@@ -887,26 +887,30 @@
         </div>
       </div>
 
-      <form class="form reveal" onsubmit="event.preventDefault(); this.querySelector('.submit button').innerText='Request received — we\\'ll be in touch.'">
+      <form class="form reveal" action="https://formsubmit.co/ben@sevengensystems.com" method="POST">
+        <input type="hidden" name="_cc" value="operations@bushbusters.com">
+        <input type="hidden" name="_subject" value="New Quote Request — Sevierville Land Clearing">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://seviervillelandclearing.com/#quote">
         <div class="field">
           <label for="f-name">01 · Full Name</label>
-          <input id="f-name" type="text" placeholder="Jane Doe" required>
+          <input id="f-name" name="name" type="text" placeholder="Jane Doe" required>
         </div>
         <div class="field">
           <label for="f-phone">02 · Phone</label>
-          <input id="f-phone" type="tel" placeholder="(555) 000-0000" required>
+          <input id="f-phone" name="phone" type="tel" placeholder="(555) 000-0000" required>
         </div>
         <div class="field">
           <label for="f-email">03 · Email</label>
-          <input id="f-email" type="email" placeholder="you@domain.com" required>
+          <input id="f-email" name="email" type="email" placeholder="you@domain.com" required>
         </div>
         <div class="field">
           <label for="f-size">04 · Property Size</label>
-          <input id="f-size" type="text" placeholder="e.g. 3.2 acres" required>
+          <input id="f-size" name="property_size" type="text" placeholder="e.g. 3.2 acres" required>
         </div>
         <div class="field full">
           <label for="f-svc">05 · Service Needed</label>
-          <select id="f-svc" required>
+          <select id="f-svc" name="service" required>
             <option value="">Select a service —</option>
             <option>Land Clearing — Full Site</option>
             <option>Forestry Mulching</option>
@@ -918,7 +922,7 @@
         </div>
         <div class="field full">
           <label for="f-msg">06 · Tell us about the job</label>
-          <textarea id="f-msg" rows="4" placeholder="Address or nearest cross street, timeline, access notes, anything that'd help us price it accurately."></textarea>
+          <textarea id="f-msg" name="message" rows="4" placeholder="Address or nearest cross street, timeline, access notes, anything that'd help us price it accurately."></textarea>
         </div>
         <div class="submit"><button type="submit">Request Free Estimate →</button></div>
       </form>
