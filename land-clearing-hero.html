@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Land Clearing Sevierville TN — East Tennessee</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold:  #D4A017;
+  --white: #F2EDE6;
+  --dark:  #080808;
+}
+
+html, body { width:100%; overflow-x:hidden; background:var(--dark); color:var(--white); font-family:'Inter',sans-serif; }
+
+/* ─── NAV ─── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:500;
+  padding:18px 28px;
+  display:flex; justify-content:space-between; align-items:center;
+  background:linear-gradient(180deg,rgba(8,8,8,.9) 0%,transparent 100%);
+}
+.logo { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:.12em; color:var(--white); }
+.logo em { color:var(--gold); font-style:normal; }
+.nav-r { display:flex; gap:20px; align-items:center; }
+.nav-r a { color:rgba(242,237,230,.5); font-size:.72rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; transition:color .2s; }
+.nav-r a:hover { color:var(--white); }
+.nav-quote {
+  color:var(--dark)!important; background:var(--gold);
+  padding:8px 18px; border-radius:1px; font-weight:500!important;
+}
+.nav-quote:hover { background:#e8b820!important; }
+
+/* ─── SCROLL MACHINE ─── */
+.scroll-container { position:relative; height:550vh; }
+
+.sticky-scene {
+  position:sticky; top:0; width:100%; height:100vh;
+  overflow:hidden;
+}
+
+/* PHOTO LAYERS */
+.bg-forest {
+  position:absolute; inset:0; z-index:1;
+  background: url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1920&q=85&fit=crop') center/cover no-repeat;
+}
+
+/* Cleared land reveal — covers left side of forest photo */
+.bg-cleared {
+  position:absolute; inset:0; z-index:2;
+  /* Brown-earth gradient simulating cleared dirt */
+  background:
+    linear-gradient(
+      180deg,
+      #2a1a0a 0%,
+      #4a2e14 20%,
+      #6b4020 35%,
+      #8B5E3C 50%,
+      #A0714F 62%,
+      #8a6040 75%,
+      #5c3d24 100%
+    );
+  /* Starts hidden, revealed from left by JS clip-path */
+  clip-path: inset(0 100% 0 0);
+  will-change: clip-path;
+}
+
+/* Stump silhouettes on cleared side */
+.stumps-svg {
+  position:absolute; z-index:3;
+  bottom:28%; left:0; right:0; height:60px;
+  pointer-events:none;
+}
+
+/* Atmospheric overlays */
+.vignette {
+  position:absolute; inset:0; z-index:4;
+  background: radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(8,8,8,.65) 100%);
+  pointer-events:none;
+}
+
+/* Bottom gradient for text readability */
+.bottom-grad {
+  position:absolute; bottom:0; left:0; right:0; height:55%; z-index:5;
+  background: linear-gradient(180deg, transparent 0%, rgba(8,8,8,.6) 50%, rgba(8,8,8,.92) 100%);
+  pointer-events:none;
+}
+
+/* Top gradient */
+.top-grad {
+  position:absolute; top:0; left:0; right:0; height:25%; z-index:5;
+  background: linear-gradient(180deg, rgba(8,8,8,.8) 0%, transparent 100%);
+  pointer-events:none;
+}
+
+/* ─── DUST ─── */
+.dust { position:absolute; z-index:8; pointer-events:none; opacity:0; transition:opacity .5s; }
+.dp {
+  position:absolute; border-radius:50%;
+  background:rgba(180,130,80,.5);
+  animation:dp 1.5s ease-out infinite;
+}
+@keyframes dp {
+  0%   { transform:scale(1) translateY(0);   opacity:.55; }
+  100% { transform:scale(4) translateY(-70px); opacity:0; }
+}
+
+/* ─── MACHINE ─── */
+.machine-wrap {
+  position:absolute; z-index:9;
+  will-change:left,bottom;
+  filter: drop-shadow(0 12px 40px rgba(0,0,0,.85)) drop-shadow(0 0 20px rgba(0,0,0,.5));
+}
+
+/* Headlight beam */
+.headlight-beam {
+  position:absolute; z-index:7;
+  pointer-events:none; opacity:0;
+  transition:opacity .3s;
+  transform-origin:left center;
+}
+
+/* Progress bar */
+.progress-bar {
+  position:absolute; bottom:0; left:0; height:1.5px;
+  background:var(--gold); z-index:20; width:0%;
+  transition:width .04s linear;
+}
+
+/* ─── SCROLL HINT (fixed, outside overflow:hidden) ─── */
+.scroll-hint {
+  position:fixed; bottom:32px; left:50%;
+  transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+  z-index:500; pointer-events:none;
+  transition:opacity .6s;
+}
+.scroll-hint.gone { opacity:0; }
+.sh-line {
+  width:1px; height:44px;
+  background:linear-gradient(180deg,transparent,rgba(212,160,23,.8));
+  animation:shline 1.8s ease-in-out infinite;
+}
+@keyframes shline {
+  0%,100% { transform:scaleY(.4) translateY(-10px); opacity:.3; }
+  60%      { transform:scaleY(1)  translateY(0);    opacity:1;  }
+}
+.scroll-hint span {
+  font-size:.58rem; letter-spacing:.22em; text-transform:uppercase;
+  color:rgba(242,237,230,.38);
+}
+
+/* ─── WORD REVEAL — fixed, lives completely outside overflow:hidden ─── */
+.word-reveal {
+  position:fixed; bottom:0; left:0; right:0;
+  padding:0 32px 48px;
+  z-index:500; pointer-events:none;
+}
+
+/* Each line clips its content */
+.rl {
+  overflow:hidden;
+  line-height:1.04;
+  max-height:0;
+  transition: max-height .6s cubic-bezier(.16,1,.3,1);
+}
+.rl.on { max-height: var(--h); }
+
+.rl .t {
+  display:block;
+  font-family:'Bebas Neue',sans-serif;
+  letter-spacing:.03em;
+  color:var(--white);
+  text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 100px rgba(0,0,0,.6);
+  transform:translateY(108%);
+  transition: transform .65s cubic-bezier(.16,1,.3,1);
+  padding-bottom:.06em;
+}
+.rl.on .t { transform:translateY(0); }
+
+/* Size variants */
+.rl-xl   { --h: clamp(3.2rem, 12vw, 9rem); }
+.rl-xl .t  { font-size: clamp(3rem, 11.5vw, 8.5rem); }
+
+.rl-lg   { --h: clamp(2rem, 7vw, 5.5rem); }
+.rl-lg .t  { font-size: clamp(1.8rem, 6.5vw, 5rem); }
+
+.rl-sm   { --h: clamp(.9rem, 2.5vw, 1.3rem); }
+.rl-sm .t  {
+  font-family:'Inter',sans-serif;
+  font-size: clamp(.7rem, 1.6vw, .9rem);
+  font-weight:300; letter-spacing:.14em;
+  color:rgba(242,237,230,.5);
+  text-shadow:none; text-transform:uppercase;
+}
+
+/* Highlighted character (like Terminal's green letter) */
+.hl { color:var(--gold); }
+
+/* Scene label — top left */
+.scene-label {
+  position:fixed; top:70px; left:28px; z-index:500;
+  font-size:.6rem; letter-spacing:.2em; text-transform:uppercase;
+  color:rgba(242,237,230,.35);
+  transition:opacity .4s;
+  pointer-events:none;
+}
+.scene-label span { color:var(--gold); }
+
+/* CTA pill */
+.cta-pill {
+  position:fixed; bottom:32px; right:28px; z-index:500;
+  opacity:0; transform:translateY(10px);
+  transition:opacity .5s,transform .5s; pointer-events:none;
+}
+.cta-pill.on { opacity:1; transform:translateY(0); pointer-events:all; }
+.cta-pill a {
+  display:block; background:var(--gold); color:var(--dark);
+  padding:12px 24px;
+  font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:.1em;
+  text-decoration:none; border-radius:1px;
+  transition:background .2s;
+}
+.cta-pill a:hover { background:#e8b820; }
+
+/* Acres stat */
+.stat-box {
+  position:fixed; top:72px; right:20px; z-index:500;
+  background:rgba(8,8,8,.75); border:1px solid rgba(212,160,23,.3);
+  padding:12px 16px; text-align:center;
+  opacity:0; transform:translateY(6px); transition:opacity .4s,transform .4s;
+  pointer-events:none;
+}
+.stat-box.on { opacity:1; transform:translateY(0); }
+.stat-box .n { font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--gold); line-height:1; letter-spacing:.06em; }
+.stat-box .l { font-size:.55rem; letter-spacing:.16em; text-transform:uppercase; color:rgba(242,237,230,.4); margin-top:4px; }
+
+/* ─── BELOW FOLD ─── */
+.below { background:var(--dark); }
+
+.hero-cta-section {
+  padding:80px 32px;
+  max-width:900px; margin:0 auto;
+  display:flex; flex-direction:column; gap:40px;
+}
+.hcs-eyebrow { font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+.hcs-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,6vw,5rem); letter-spacing:.04em; line-height:1.02; }
+.hcs-body { color:rgba(242,237,230,.55); line-height:1.78; max-width:520px; }
+.hcs-btns { display:flex; gap:12px; flex-wrap:wrap; }
+.btn-p {
+  background:var(--gold); color:var(--dark);
+  padding:14px 32px; font-family:'Bebas Neue',sans-serif;
+  font-size:1rem; letter-spacing:.1em; text-decoration:none;
+  border-radius:1px; transition:background .2s;
+  display:inline-block;
+}
+.btn-p:hover { background:#e8b820; }
+.btn-s {
+  border:1px solid rgba(242,237,230,.25); color:var(--white);
+  padding:14px 32px; font-family:'Bebas Neue',sans-serif;
+  font-size:1rem; letter-spacing:.1em; text-decoration:none;
+  border-radius:1px; transition:border-color .2s,color .2s;
+  display:inline-block;
+}
+.btn-s:hover { border-color:var(--gold); color:var(--gold); }
+
+/* Services */
+.svcs-section { border-top:1px solid rgba(255,255,255,.06); }
+.svcs-grid {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:0;
+}
+.svc {
+  padding:36px 28px; border-right:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:background .2s;
+}
+.svc:hover { background:rgba(255,255,255,.03); }
+.svc-num { font-family:'Bebas Neue',sans-serif; font-size:.8rem; color:var(--gold); letter-spacing:.1em; margin-bottom:16px; }
+.svc h3 { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:.06em; margin-bottom:10px; }
+.svc p { font-size:.82rem; color:rgba(242,237,230,.45); line-height:1.7; }
+
+.cta-section {
+  background:var(--gold); padding:72px 32px; text-align:center;
+}
+.cta-section h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(2rem,5vw,4rem); color:var(--dark); letter-spacing:.06em; margin-bottom:10px; }
+.cta-section p { color:rgba(8,8,8,.55); margin-bottom:28px; }
+.cta-section a {
+  background:var(--dark); color:var(--gold);
+  padding:16px 40px; font-family:'Bebas Neue',sans-serif;
+  font-size:1.1rem; letter-spacing:.1em; text-decoration:none;
+  border-radius:1px; display:inline-block; transition:background .2s;
+}
+.cta-section a:hover { background:#111; }
+
+footer {
+  background:#040404; padding:28px 32px;
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+  color:rgba(242,237,230,.2);
+}
+footer a { color:rgba(212,160,23,.4); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Land<em>Clearing</em> · Sevierville</div>
+  <div class="nav-r">
+    <a href="#">Services</a>
+    <a href="#">Areas</a>
+    <a href="#">Gallery</a>
+    <a href="#" class="nav-quote">Free Quote</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     SCROLL SCENE — animation only
+══════════════════════════════════════ -->
+<div class="scroll-container" id="sc">
+  <div class="sticky-scene" id="ss">
+
+    <!-- Background layers -->
+    <div class="bg-forest" id="bgForest"></div>
+    <div class="bg-cleared" id="bgCleared"></div>
+
+    <!-- Stumps on cleared side -->
+    <svg class="stumps-svg" id="stumps" viewBox="0 0 1200 60"
+         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="35"  y="20" width="22" height="38" rx="3" fill="#3d2010" opacity=".9"/>
+      <rect x="43"  y="12" width="6"  height="10" rx="1" fill="#4a2a18" opacity=".7"/>
+      <rect x="110" y="26" width="18" height="32" rx="3" fill="#3d2010" opacity=".8"/>
+      <rect x="200" y="18" width="26" height="40" rx="3" fill="#2d1808" opacity=".9"/>
+      <rect x="208" y="10" width="10" height="10" rx="1" fill="#3d2010" opacity=".6"/>
+      <rect x="295" y="24" width="20" height="34" rx="3" fill="#3d2010" opacity=".75"/>
+      <rect x="390" y="20" width="24" height="38" rx="3" fill="#2d1808" opacity=".85"/>
+      <rect x="475" y="25" width="16" height="33" rx="3" fill="#3d2010" opacity=".80"/>
+      <rect x="550" y="19" width="22" height="39" rx="3" fill="#2d1808" opacity=".90"/>
+      <rect x="640" y="23" width="20" height="35" rx="3" fill="#3d2010" opacity=".75"/>
+    </svg>
+
+    <!-- Atmospheric overlays -->
+    <div class="vignette"></div>
+    <div class="top-grad"></div>
+    <div class="bottom-grad"></div>
+
+    <!-- Dust cloud -->
+    <div class="dust" id="dust">
+      <div class="dp" style="width:28px;height:28px;left:-8px;bottom:0;animation-delay:0s;animation-duration:1.4s"></div>
+      <div class="dp" style="width:18px;height:18px;left:-32px;bottom:0;animation-delay:.4s;animation-duration:1.7s"></div>
+      <div class="dp" style="width:22px;height:22px;left:12px;bottom:0;animation-delay:.7s;animation-duration:1.2s"></div>
+      <div class="dp" style="width:12px;height:12px;left:-50px;bottom:0;animation-delay:1s;animation-duration:2s"></div>
+      <div class="dp" style="width:16px;height:16px;left:24px;bottom:0;animation-delay:.2s;animation-duration:1.6s"></div>
+    </div>
+
+    <!-- BOBCAT CTL + FAE MULCHER — facing right, larger -->
+    <div class="machine-wrap" id="machine">
+      <svg width="460" height="200" viewBox="0 0 460 200"
+           xmlns="http://www.w3.org/2000/svg">
+
+        <!-- TRACKS -->
+        <rect x="10" y="148" width="310" height="36" rx="14" fill="#1a1a1a"/>
+        <!-- track pads -->
+        <rect x="20"  y="151" width="20" height="30" rx="3" fill="#0d0d0d"/>
+        <rect x="46"  y="151" width="20" height="30" rx="3" fill="#0d0d0d"/>
+        <rect x="72"  y="151" width="20" height="30" rx="3" fill="#0d0d0d"/>
+        <rect x="98"  y="151" width="20" height="30" rx="3" fill="#0d0d0d"/>
+        <rect x="124" y="151" width="20" height="30" rx="3" fill="#0d0d0d"/>
+        <rect x="150" y="151" width="20" height="30" rx="3" fill="#0d0d0d"/>
+        <rect x="176" y="151" width="20" height="30" rx="3" fill="#0d0d0d"/>
+        <rect x="202" y="151" width="20" height="30" rx="3" fill="#0d0d0d"/>
+        <rect x="228" y="151" width="20" height="30" rx="3" fill="#0d0d0d"/>
+        <rect x="254" y="151" width="20" height="30" rx="3" fill="#0d0d0d"/>
+        <rect x="280" y="151" width="20" height="30" rx="3" fill="#0d0d0d"/>
+        <!-- sprockets -->
+        <circle cx="30"  cy="166" r="20" fill="#2a2a2a"/>
+        <circle cx="30"  cy="166" r="10" fill="#1a1a1a"/>
+        <circle cx="30"  cy="166" r="4"  fill="#333"/>
+        <circle cx="300" cy="166" r="20" fill="#2a2a2a"/>
+        <circle cx="300" cy="166" r="10" fill="#1a1a1a"/>
+        <circle cx="300" cy="166" r="4"  fill="#333"/>
+        <!-- track highlight -->
+        <rect x="10" y="148" width="310" height="5" rx="3" fill="rgba(255,255,255,.06)"/>
+
+        <!-- MAIN BODY -->
+        <rect x="28" y="86" width="262" height="70" rx="6" fill="#d5d5d5"/>
+        <rect x="28" y="86" width="262" height="14" rx="5" fill="#E05A18"/>
+        <rect x="28" y="96" width="262" height="8"        fill="#E05A18"/>
+        <!-- body shadow -->
+        <rect x="28" y="143" width="262" height="13" rx="3" fill="#aaa"/>
+        <!-- counterweight -->
+        <rect x="18" y="96" width="22" height="46" rx="4" fill="#c8c8c8"/>
+        <rect x="18" y="96" width="22" height="8"  rx="3" fill="#E05A18"/>
+
+        <!-- ROPS CAGE -->
+        <rect x="46"  y="26" width="11" height="66" rx="4" fill="#c0c0c0"/>
+        <rect x="240" y="26" width="11" height="66" rx="4" fill="#c0c0c0"/>
+        <rect x="46"  y="26" width="205" height="11" rx="4" fill="#c8c8c8"/>
+        <rect x="46"  y="26" width="205" height="3"  rx="2" fill="rgba(255,255,255,.5)"/>
+        <rect x="195" y="26" width="11" height="66" rx="4" fill="#bbb"/>
+
+        <!-- WINDSHIELD + GLASS -->
+        <rect x="57" y="35" width="138" height="58" rx="4" fill="#6aaec8" opacity=".8"/>
+        <!-- glass tint + reflections -->
+        <rect x="57" y="35" width="138" height="58" rx="4" fill="rgba(20,60,80,.25)"/>
+        <rect x="61" y="39" width="50" height="14" rx="2" fill="rgba(255,255,255,.3)"/>
+        <rect x="61" y="39" width="6"  height="48" rx="2" fill="rgba(255,255,255,.18)"/>
+        <!-- cab divider -->
+        <rect x="122" y="35" width="5" height="58" fill="rgba(0,0,0,.18)"/>
+        <!-- side glass -->
+        <rect x="208" y="42" width="30" height="48" rx="3" fill="#6aaec8" opacity=".55"/>
+
+        <!-- BOBCAT LOGO PLATE -->
+        <rect x="145" y="54" width="42" height="22" rx="3" fill="#E05A18"/>
+        <text x="152" y="70" font-family="Arial Black,sans-serif"
+              font-size="11" fill="white" font-weight="900" letter-spacing=".4">BOB</text>
+
+        <!-- OPERATOR silhouette inside cab -->
+        <ellipse cx="95" cy="52" rx="10" ry="12" fill="rgba(0,0,0,.4)"/>
+        <rect    x="85" y="60" width="20" height="20" rx="2" fill="rgba(0,0,0,.35)"/>
+
+        <!-- EXHAUST STACK -->
+        <rect x="228" y="10" width="13" height="42" rx="5" fill="#777"/>
+        <ellipse cx="234" cy="9" rx="8" ry="6" fill="#555"/>
+        <!-- exhaust smoke puffs -->
+        <circle cx="234" cy="0"  r="8"  fill="rgba(200,200,200,.22)"/>
+        <circle cx="238" cy="-10" r="6" fill="rgba(200,200,200,.16)"/>
+        <circle cx="231" cy="-19" r="5" fill="rgba(200,200,200,.10)"/>
+
+        <!-- LIFT BOOM ARMS -->
+        <rect x="248" y="68" width="82" height="17" rx="6" fill="#999"
+              transform="rotate(-8 248 68)"/>
+        <rect x="248" y="110" width="82" height="17" rx="6" fill="#999"
+              transform="rotate(5 248 110)"/>
+        <!-- hydraulic cylinders -->
+        <rect x="260" y="70" width="44" height="8" rx="3" fill="#777"
+              transform="rotate(-8 260 70)"/>
+        <rect x="260" y="112" width="44" height="8" rx="3" fill="#777"
+              transform="rotate(5 260 112)"/>
+        <!-- arm pivot pins -->
+        <circle cx="252" cy="72" r="8" fill="#777"/><circle cx="252" cy="72" r="4" fill="#555"/>
+        <circle cx="326" cy="82" r="8" fill="#777"/><circle cx="326" cy="82" r="4" fill="#555"/>
+        <circle cx="252" cy="114" r="8" fill="#777"/><circle cx="252" cy="114" r="4" fill="#555"/>
+        <circle cx="325" cy="126" r="8" fill="#777"/><circle cx="325" cy="126" r="4" fill="#555"/>
+
+        <!-- FAE MULCHER BODY -->
+        <rect x="326" y="72" width="18" height="74" rx="3" fill="#7a7a7a"/>
+
+        <!-- mulcher top housing -->
+        <rect x="336" y="68" width="100" height="26" rx="5" fill="#3a3a3a"/>
+        <!-- main housing -->
+        <rect x="336" y="88" width="100" height="68" rx="5" fill="#2e2e2e"/>
+        <rect x="338" y="90" width="96"  height="64" rx="4" fill="#363636"/>
+
+        <!-- FAE logo panel -->
+        <rect x="346" y="98" width="72" height="40" rx="3" fill="#1e1e1e"/>
+        <!-- FAE triangle -->
+        <polygon points="358,110 378,110 368,128" fill="#E05A18"/>
+        <text x="382" y="126" font-family="Arial Black,sans-serif"
+              font-size="14" fill="#bbb" font-weight="900" letter-spacing="1.5">FAE</text>
+
+        <!-- housing bolts -->
+        <circle cx="342" cy="94"  r="3" fill="#555"/>
+        <circle cx="342" cy="151" r="3" fill="#555"/>
+        <circle cx="430" cy="94"  r="3" fill="#555"/>
+        <circle cx="430" cy="151" r="3" fill="#555"/>
+
+        <!-- CUTTING DRUM (right face — the business end) -->
+        <rect x="434" y="80" width="22" height="76" rx="4" fill="#222"/>
+        <!-- drum teeth -->
+        <rect x="444" y="82"  width="16" height="11" rx="2" fill="#444"/>
+        <rect x="447" y="82"  width="8"  height="11" rx="1" fill="#666"/>
+        <rect x="444" y="97"  width="16" height="11" rx="2" fill="#444"/>
+        <rect x="447" y="97"  width="8"  height="11" rx="1" fill="#666"/>
+        <rect x="444" y="112" width="16" height="11" rx="2" fill="#444"/>
+        <rect x="447" y="112" width="8"  height="11" rx="1" fill="#666"/>
+        <rect x="444" y="127" width="16" height="11" rx="2" fill="#444"/>
+        <rect x="447" y="127" width="8"  height="11" rx="1" fill="#666"/>
+        <rect x="444" y="142" width="16" height="11" rx="2" fill="#444"/>
+        <rect x="447" y="142" width="8"  height="11" rx="1" fill="#666"/>
+        <!-- drum edge highlight -->
+        <rect x="434" y="80" width="5" height="76" rx="2" fill="rgba(255,255,255,.05)"/>
+
+        <!-- HYDRAULIC HOSES -->
+        <path d="M 264 82  Q 300 76 336 84" stroke="#555" stroke-width="5"  fill="none" stroke-linecap="round"/>
+        <path d="M 264 88  Q 300 82 336 90" stroke="#444" stroke-width="3"  fill="none" stroke-linecap="round"/>
+        <path d="M 264 116 Q 298 122 336 128" stroke="#555" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+        <!-- HEADLIGHT -->
+        <rect x="336" y="68" width="100" height="8" rx="3" fill="rgba(255,240,160,.18)"/>
+
+        <!-- Company text on body -->
+        <text x="44" y="130" font-family="'Bebas Neue',sans-serif" font-size="14"
+              fill="rgba(0,0,0,.4)" letter-spacing="2">BUSH BUSTERS</text>
+        <text x="44" y="145" font-family="'Bebas Neue',sans-serif" font-size="10"
+              fill="rgba(0,0,0,.25)" letter-spacing="1">SEVIERVILLE, TN</text>
+
+      </svg>
+    </div><!-- /machine -->
+
+    <div class="progress-bar" id="pb"></div>
+
+  </div><!-- /sticky-scene -->
+</div><!-- /scroll-container -->
+
+<!-- ═══════════════════════════════════════════════
+     ALL OVERLAID UI — position:fixed, no clipping
+═══════════════════════════════════════════════ -->
+
+<!-- Scroll hint -->
+<div class="scroll-hint" id="scrollHint">
+  <div class="sh-line"></div>
+  <span>Scroll to Explore</span>
+</div>
+
+<!-- Scene counter (top left, like Terminal) -->
+<div class="scene-label" id="sceneLabel">
+  <span id="sceneNum">01</span> / 03
+</div>
+
+<!-- Word reveal lines -->
+<div class="word-reveal" id="wordReveal">
+  <!-- Line 1 -->
+  <div class="rl rl-xl" id="l1"><div class="t">We <span class="hl">C</span>lear</div></div>
+  <!-- Line 2 -->
+  <div class="rl rl-xl" id="l2"><div class="t">The <span class="hl">L</span>and.</div></div>
+  <!-- Gap line -->
+  <div style="height:clamp(.4rem,1.5vw,.8rem)"></div>
+  <!-- Line 3 -->
+  <div class="rl rl-lg" id="l3"><div class="t">You <span class="hl">B</span>uild The Dream.</div></div>
+  <!-- Line 4 — tagline -->
+  <div class="rl rl-sm" id="l4" style="margin-top:clamp(.4rem,1vw,.6rem)">
+    <div class="t">Land clearing · Forestry mulching · Site prep · East Tennessee</div>
+  </div>
+</div>
+
+<!-- CTA button -->
+<div class="cta-pill" id="ctaPill">
+  <a href="#">Get Free Quote →</a>
+</div>
+
+<!-- Stat box -->
+<div class="stat-box" id="statBox">
+  <div class="n" id="statNum">0</div>
+  <div class="l">Acres Cleared</div>
+</div>
+
+<!-- ═══════════════ BELOW FOLD ═══════════════ -->
+<div class="below">
+  <div class="hero-cta-section">
+    <div class="hcs-eyebrow">East Tennessee Land Clearing</div>
+    <div class="hcs-title">Professional clearing<br>for every project.</div>
+    <p class="hcs-body">Whether you're clearing a cabin lot in the Smokies, prepping a commercial development site, or reclaiming overgrown property — we have the equipment and experience to get it done right. Serving Sevierville, Pigeon Forge, Gatlinburg, Knoxville, and all of East Tennessee.</p>
+    <div class="hcs-btns">
+      <a href="#" class="btn-p">Get Free Quote</a>
+      <a href="#" class="btn-s">View Services</a>
+    </div>
+  </div>
+
+  <div class="svcs-section">
+    <div class="svcs-grid">
+      <div class="svc"><div class="svc-num">01</div><h3>Land Clearing</h3><p>Full property clearing for residential and commercial builds. Trees, stumps, brush, and debris removed clean and fast.</p></div>
+      <div class="svc"><div class="svc-num">02</div><h3>Forestry Mulching</h3><p>Single-machine eco-friendly clearing that grinds vegetation into nutrient-rich mulch on-site. No hauling, no burning.</p></div>
+      <div class="svc"><div class="svc-num">03</div><h3>Lot Clearing</h3><p>Cabin lots, homesites, and STR builds prepped build-ready. We know the terrain of Sevier County and Knox County.</p></div>
+      <div class="svc"><div class="svc-num">04</div><h3>Bush Hogging</h3><p>Fast, affordable brush cutting for fields, pastures, and overgrown residential properties across East Tennessee.</p></div>
+      <div class="svc"><div class="svc-num">05</div><h3>Site Preparation</h3><p>Grading, leveling, and complete site prep so your contractor can break ground without delay or surprises.</p></div>
+      <div class="svc"><div class="svc-num">06</div><h3>Free Estimates</h3><p>We come to your land, assess the scope, and give you a clear price. No obligation, no hidden fees, ever.</p></div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h2>Ready To Clear Your Land?</h2>
+    <p>Serving Sevierville · Pigeon Forge · Gatlinburg · Knoxville · All of East TN</p>
+    <a href="#">Call For A Free Quote</a>
+  </div>
+
+  <footer>
+    <span>© 2025 Land Clearing Sevierville · East Tennessee</span>
+    <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+  </footer>
+</div>
+
+<script>
+  const sc       = document.getElementById('sc');
+  const machine  = document.getElementById('machine');
+  const bgClrd   = document.getElementById('bgCleared');
+  const stumps   = document.getElementById('stumps');
+  const pb       = document.getElementById('pb');
+  const dust     = document.getElementById('dust');
+  const hint     = document.getElementById('scrollHint');
+  const ctaPill  = document.getElementById('ctaPill');
+  const statBox  = document.getElementById('statBox');
+  const statNum  = document.getElementById('statNum');
+  const scLabel  = document.getElementById('sceneLabel');
+  const scNum    = document.getElementById('sceneNum');
+
+  const lines = [
+    { el: document.getElementById('l1'), at: 0.10 },
+    { el: document.getElementById('l2'), at: 0.25 },
+    { el: document.getElementById('l3'), at: 0.48 },
+    { el: document.getElementById('l4'), at: 0.65 },
+  ];
+
+  // Machine: starts off left edge, exits right edge
+  // 460px wide SVG
+  const TRUCK_W  = 460;
+  const START_VW = -20;   // % of viewport — off left
+  const END_VW   = 110;   // % — off right
+  const TRUCK_BOT_VH = 0.28; // 28% from bottom
+
+  function lerp(a,b,t){ return a+(b-a)*t; }
+  function ease(t){ return t<.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+  let prev = -1;
+
+  function tick() {
+    const cTop = sc.getBoundingClientRect().top + window.scrollY;
+    const cH   = sc.offsetHeight;
+    const wH   = window.innerHeight;
+    const raw  = Math.max(0, Math.min(1, (window.scrollY - cTop) / (cH - wH)));
+
+    if (Math.abs(raw-prev) < 0.0003) return;
+    prev = raw;
+
+    const p   = ease(raw);
+    const vpW = window.innerWidth;
+    const vpH = wH;
+
+    // Machine position
+    const mLeft   = lerp(START_VW, END_VW, p) / 100 * vpW;
+    const mBottom = TRUCK_BOT_VH * vpH;
+    machine.style.left   = mLeft + 'px';
+    machine.style.bottom = mBottom + 'px';
+
+    // Drum/blade right edge
+    const drumRight = mLeft + TRUCK_W - 6; // drum at ~454px in SVG
+    const drumPct   = Math.max(0, Math.min(100, (drumRight / vpW) * 100));
+
+    // Forest clip: show only right of drum
+    // (forest retreats to the right as truck clears left)
+    document.querySelector('.bg-forest').style.clipPath =
+      raw < 0.01  ? 'inset(0 0 0 0)' :
+      raw > 0.985 ? 'inset(0 0 0 100%)' :
+                    `inset(0 0 0 ${drumPct}%)`;
+
+    // Cleared overlay: covers left of drum
+    bgClrd.style.clipPath =
+      raw < 0.01  ? 'inset(0 100% 0 0)' :
+      raw > 0.985 ? 'inset(0 0 0 0)' :
+                    `inset(0 ${100 - drumPct}% 0 0)`;
+
+    // Stumps visibility — only show in cleared zone
+    stumps.style.clipPath = bgClrd.style.clipPath;
+
+    // Dust
+    dust.style.left   = (drumRight - 40) + 'px';
+    dust.style.bottom = (mBottom + 18) + 'px';
+    dust.style.opacity = (raw > 0.02 && raw < 0.96) ? '1' : '0';
+
+    // Progress bar
+    pb.style.width = (raw*100) + '%';
+
+    // Scroll hint
+    hint.classList.toggle('gone', raw > 0.04);
+
+    // Word reveals
+    lines.forEach(({el, at}) => el.classList.toggle('on', raw >= at));
+
+    // Scene counter
+    const scene = raw < 0.33 ? '01' : raw < 0.66 ? '02' : '03';
+    if (scNum.textContent !== scene) scNum.textContent = scene;
+
+    // CTA
+    ctaPill.classList.toggle('on', raw > 0.82);
+
+    // Stat
+    if (raw > 0.18) {
+      statBox.classList.add('on');
+      statNum.textContent = Math.round(raw * 60);
+    } else {
+      statBox.classList.remove('on');
+    }
+  }
+
+  // Init
+  machine.style.left   = (START_VW / 100 * window.innerWidth) + 'px';
+  machine.style.bottom = (TRUCK_BOT_VH * window.innerHeight) + 'px';
+
+  window.addEventListener('scroll', tick, { passive: true });
+  window.addEventListener('resize', tick);
+  tick();
+</script>
+</body>
+</html>
