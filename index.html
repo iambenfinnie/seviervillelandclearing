@@ -1,30 +1,1211 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sevierville Land Clearing — Coming Soon</title>
-  <meta name="description" content="Professional land clearing services in Sevierville, TN. Launching soon." />
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#0f2e1a;color:#f5f1e8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;text-align:center}
-    .container{max-width:640px}
-    .badge{display:inline-block;padding:.4rem 1rem;background:rgba(255,255,255,.1);border-radius:999px;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2rem}
-    h1{font-size:clamp(2rem,6vw,3.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem;color:#f7d87a}
-    p{font-size:1.15rem;line-height:1.6;opacity:.9;margin-bottom:2rem}
-    .contact{border-top:1px solid rgba(255,255,255,.15);padding-top:1.5rem;margin-top:2rem;opacity:.85;font-size:.95rem}
-    .contact a{color:#f7d87a;text-decoration:none;font-weight:600}
-    .contact a:hover{text-decoration:underline}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Sevierville Land Clearing — Forestry Mulching & Lot Clearing in East Tennessee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ink:#080808;
+    --ink-2:#0e0e0e;
+    --ink-3:#151513;
+    --bone:#F2EDE6;
+    --bone-dim:#b8b1a5;
+    --bone-faint:#6a6459;
+    --gold:#D4A017;
+    --gold-hi:#e9b92b;
+    --gold-lo:#8a6a0f;
+    --rule:rgba(242,237,230,0.10);
+    --rule-2:rgba(242,237,230,0.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--ink);color:var(--bone);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+  html{scroll-behavior:smooth}
+  body{overflow-x:hidden;font-weight:400;line-height:1.55}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;font-size:11px;color:var(--bone-dim)}
+  .bebas{font-family:'Bebas Neue',Impact,sans-serif;letter-spacing:0.01em;line-height:0.9}
+  .gold{color:var(--gold)}
+  .container{max-width:1440px;margin:0 auto;padding:0 32px}
+  @media (max-width:640px){.container{padding:0 20px}}
+
+  /* ---------------- NAV ---------------- */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .3s ease,border-color .3s ease,backdrop-filter .3s ease;border-bottom:1px solid transparent}
+  .nav.scrolled{background:rgba(8,8,8,0.82);backdrop-filter:blur(14px) saturate(130%);border-bottom-color:var(--rule)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;padding:0 32px;max-width:1440px;margin:0 auto}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.08em}
+  .logo-mark{width:22px;height:22px;position:relative;flex:0 0 auto}
+  .logo-mark:before,.logo-mark:after{content:"";position:absolute;inset:0;border:1.5px solid var(--bone)}
+  .logo-mark:after{border-color:var(--gold);transform:translate(4px,4px)}
+  .nav-links{display:flex;align-items:center;gap:36px}
+  .nav-links a{font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--bone);opacity:.82;transition:opacity .2s}
+  .nav-links a:hover{opacity:1}
+  .btn-gold{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#151004;padding:12px 22px;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;transition:background .2s,transform .2s}
+  .btn-gold:hover{background:var(--gold-hi);transform:translateY(-1px)}
+  .btn-gold .arr{width:14px;height:10px;position:relative}
+  .btn-gold .arr:before{content:"";position:absolute;top:50%;left:0;right:2px;height:1.5px;background:#151004;transform:translateY(-50%)}
+  .btn-gold .arr:after{content:"";position:absolute;top:50%;right:0;width:7px;height:7px;border-top:1.5px solid #151004;border-right:1.5px solid #151004;transform:translateY(-50%) rotate(45deg)}
+  .nav-phone{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:var(--bone-dim)}
+  .nav-phone .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+  .nav-menu-btn{display:none;width:40px;height:40px;border:1px solid var(--rule-2);align-items:center;justify-content:center;flex-direction:column;gap:5px}
+  .nav-menu-btn span{width:16px;height:1.5px;background:var(--bone)}
+  @media (max-width:900px){
+    .nav-links{display:none}
+    .nav-phone{display:none}
+    .nav-menu-btn{display:flex}
+  }
+
+  /* ---------------- HERO (scroll-driven) ---------------- */
+  .hero-scroll{position:relative;height:520vh} /* tall scroll track */
+  .hero-sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;background:#0a0f08}
+
+  /* Forest + dirt stage */
+  .stage{position:absolute;inset:0;overflow:hidden}
+  .sky{position:absolute;inset:0;background:
+    radial-gradient(120% 70% at 50% 0%, #1a2212 0%, #0b0f08 55%, #06080a 100%);
+  }
+  .sky:after{ /* faint sun haze */
+    content:"";position:absolute;left:60%;top:8%;width:280px;height:280px;border-radius:50%;
+    background:radial-gradient(circle, rgba(212,160,23,0.18) 0%, rgba(212,160,23,0) 60%);
+    filter:blur(8px)
+  }
+
+  /* forest band — a strip of SVG tree silhouettes, repeats horizontally */
+  .forest-layer{position:absolute;left:0;right:0;bottom:0;height:78%;}
+  .forest-band{position:absolute;left:0;right:0;height:100%;background-repeat:repeat-x;background-position:bottom;image-rendering:auto}
+  .forest-far{
+    bottom:24%;height:46%;opacity:.55;filter:blur(1px);
+    background-size:auto 100%;
+  }
+  .forest-mid{
+    bottom:14%;height:58%;opacity:.85;
+    background-size:auto 100%;
+  }
+  .forest-near{
+    bottom:0;height:66%;
+    background-size:auto 100%;
+  }
+  /* ground — split between cleared dirt (left of the cut) and untouched forest floor (right) */
+  .ground{position:absolute;left:0;right:0;bottom:0;height:22%;background:
+    linear-gradient(180deg, #121a0c 0%, #0a1207 100%);
+    border-top:1px solid rgba(0,0,0,.4);
+  }
+  /* dirt reveal wipe — anchored to left edge, width grows via --wipe */
+  .dirt{position:absolute;left:0;top:0;bottom:0;width:calc(var(--wipe,0) * 100%);overflow:hidden;pointer-events:none}
+  .dirt-bg{position:absolute;inset:0;background:
+    radial-gradient(80% 60% at 50% 100%, #3d2a17 0%, #271a0e 50%, #15100a 100%);
+  }
+  .dirt-noise{position:absolute;inset:0;opacity:.35;mix-blend-mode:overlay;background-image:
+    radial-gradient(rgba(255,220,170,.18) 1px, transparent 1.4px),
+    radial-gradient(rgba(0,0,0,.35) 1px, transparent 1.4px);
+    background-size:6px 6px, 9px 9px;background-position:0 0, 3px 2px}
+  .dirt-ground{position:absolute;left:0;right:0;bottom:0;height:22%;background:
+    linear-gradient(180deg, #3a2816 0%, #1b1209 100%);
+    box-shadow:inset 0 2px 0 rgba(255,200,120,.08)
+  }
+  .dirt-stumps{position:absolute;left:0;right:0;bottom:15%;height:18%;background-repeat:repeat-x;background-position:bottom left;opacity:.9}
+  /* tread marks */
+  .dirt-treads{position:absolute;left:0;right:0;bottom:4%;height:8px;background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,.55) 0 10px, transparent 10px 22px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,.35) 0 10px, transparent 10px 22px);
+    background-position:0 0, 0 14px;background-size:22px 3px, 22px 3px;background-repeat:repeat-x;opacity:.7}
+  /* dust kickup near the machine */
+  .dust{position:absolute;bottom:18%;width:240px;height:160px;pointer-events:none;opacity:0;filter:blur(8px)}
+  .dust:before,.dust:after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle, rgba(180,150,100,.55) 0%, rgba(180,150,100,0) 60%)}
+  .dust:after{transform:translate(30px,-20px) scale(.8);opacity:.8}
+
+  /* Machine wrapper — positioned by JS through --mx (0..1 across viewport) */
+  .machine{
+    position:absolute;bottom:13%;left:0;width:420px;height:260px;
+    transform:translate3d(calc(var(--mx,0) * (100vw + 420px) - 420px), 0, 0);
+    will-change:transform;pointer-events:none;
+    filter:drop-shadow(0 22px 30px rgba(0,0,0,.55));
+  }
+  .machine .bob{animation:bob 1.6s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-0.2deg)}50%{transform:translateY(-3px) rotate(0.2deg)}}
+  .machine svg{display:block;width:100%;height:auto}
+  @media (max-width:900px){.machine{width:300px;height:190px;bottom:15%;transform:translate3d(calc(var(--mx,0) * (100vw + 300px) - 300px), 0, 0)}}
+  @media (max-width:520px){.machine{width:220px;height:140px}}
+
+  /* vignette */
+  .vignette{position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 55%, transparent 40%, rgba(0,0,0,.55) 100%);pointer-events:none}
+  .grain{position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:.10;background-image:
+    radial-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
+    radial-gradient(rgba(0,0,0,.5) 1px, transparent 1px);
+    background-size:3px 3px, 5px 5px}
+
+  /* HERO OVERLAYS (position:fixed OR inside sticky, no clipping) */
+  .hero-chrome{position:absolute;inset:0;pointer-events:none;z-index:5}
+  .hero-top{position:absolute;top:96px;left:0;right:0;padding:0 32px;display:flex;justify-content:space-between;gap:24px;color:var(--bone-dim)}
+  .hero-top .tag{display:flex;align-items:center;gap:10px}
+  .hero-top .tag .bar{width:28px;height:1px;background:var(--gold)}
+  .hero-top .coords{text-align:right}
+  .hero-top .coords .v{color:var(--bone)}
+
+  .hero-headline{position:absolute;left:0;right:0;bottom:16vh;padding:0 32px;pointer-events:none}
+  .hero-headline .row{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px, 14.5vw, 220px);line-height:.86;letter-spacing:-0.005em;color:var(--bone);white-space:nowrap}
+  .hero-headline .row.small{font-size:clamp(28px, 5.6vw, 88px);color:var(--bone-dim);letter-spacing:0.04em;margin-top:14px;white-space:normal}
+  .hero-headline .letter{display:inline-block;opacity:0;transform:translateY(40%);transition:opacity .18s ease,transform .32s cubic-bezier(.2,.7,.2,1)}
+  .hero-headline .letter.on{opacity:1;transform:translateY(0)}
+  .hero-headline .row.small .letter{transform:translateY(18%)}
+
+  .hero-counter{position:absolute;right:32px;bottom:calc(16vh + clamp(64px, 14.5vw, 220px) + 90px);text-align:right;pointer-events:none}
+  .hero-counter .num{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px, 6vw, 78px);color:var(--gold);line-height:1;letter-spacing:0.02em}
+  .hero-counter .lbl{margin-top:6px;color:var(--bone-dim)}
+
+  .hero-cta{position:absolute;left:50%;bottom:var(--hero-cta-bottom, 5vh);transform:translate(-50%, 20px);opacity:0;transition:opacity .4s ease, transform .4s ease;pointer-events:none;z-index:8}
+  .hero-cta.on{opacity:1;transform:translate(-50%, 0);pointer-events:auto}
+
+  .hero-progress{position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(242,237,230,0.08);z-index:10}
+  .hero-progress .bar{height:100%;width:calc(var(--p,0) * 100%);background:linear-gradient(90deg, var(--gold-lo), var(--gold) 50%, var(--gold-hi));box-shadow:0 0 10px rgba(212,160,23,.7)}
+
+  .scroll-hint{position:absolute;left:32px;bottom:28px;display:flex;align-items:center;gap:10px;color:var(--bone-dim);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.9;transition:opacity .3s}
+  .scroll-hint .line{width:40px;height:1px;background:var(--bone-faint);position:relative;overflow:hidden}
+  .scroll-hint .line:after{content:"";position:absolute;left:-40%;top:0;height:100%;width:40%;background:var(--gold);animation:slide 2.4s ease-in-out infinite}
+  @keyframes slide{0%{left:-40%}60%{left:100%}100%{left:100%}}
+
+  /* ---------------- SECTION CHROME ---------------- */
+  .section{position:relative;padding:140px 0;border-top:1px solid var(--rule)}
+  .section-head{display:grid;grid-template-columns:220px 1fr;gap:40px;margin-bottom:80px}
+  @media (max-width:900px){.section-head{grid-template-columns:1fr;gap:20px}.section{padding:96px 0}}
+  .eyebrow{display:flex;align-items:center;gap:14px}
+  .eyebrow .dash{width:28px;height:1px;background:var(--gold)}
+  .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px, 7vw, 96px);line-height:.94;letter-spacing:0.005em;max-width:980px}
+  .section-sub{margin-top:18px;max-width:640px;color:var(--bone-dim);font-size:16px}
+
+  /* ---------------- SERVICES ---------------- */
+  .svc-grid{display:grid;grid-template-columns:repeat(3, 1fr);border-top:1px solid var(--rule-2);border-left:1px solid var(--rule-2)}
+  .svc{position:relative;padding:44px 36px 52px;border-right:1px solid var(--rule-2);border-bottom:1px solid var(--rule-2);min-height:320px;display:flex;flex-direction:column;justify-content:space-between;transition:background .3s}
+  .svc:hover{background:linear-gradient(180deg, rgba(212,160,23,0.04), transparent)}
+  .svc:hover .svc-num{color:var(--gold-hi)}
+  .svc-num{font-family:'Bebas Neue',sans-serif;font-size:64px;line-height:1;color:var(--gold);letter-spacing:0.02em;transition:color .2s}
+  .svc-title{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:.01em;margin-top:auto;margin-bottom:12px}
+  .svc-desc{color:var(--bone-dim);font-size:14.5px;line-height:1.6;max-width:40ch}
+  .svc-arrow{position:absolute;top:40px;right:36px;width:34px;height:34px;border:1px solid var(--rule-2);display:flex;align-items:center;justify-content:center;transition:background .25s, border-color .25s}
+  .svc:hover .svc-arrow{background:var(--gold);border-color:var(--gold)}
+  .svc-arrow svg{width:12px;height:12px;stroke:var(--bone-dim);transition:stroke .25s}
+  .svc:hover .svc-arrow svg{stroke:#151004}
+  @media (max-width:900px){.svc-grid{grid-template-columns:repeat(2, 1fr)}}
+  @media (max-width:560px){.svc-grid{grid-template-columns:1fr}.svc{min-height:unset;padding:32px 24px 36px}}
+
+  /* ---------------- STATS ---------------- */
+  .stats{display:grid;grid-template-columns:repeat(3, 1fr);gap:0;border-top:1px solid var(--rule-2);border-bottom:1px solid var(--rule-2)}
+  .stat{padding:64px 40px;border-right:1px solid var(--rule-2);position:relative}
+  .stat:last-child{border-right:0}
+  .stat .num{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px, 9vw, 140px);line-height:.9;color:var(--bone)}
+  .stat .num .unit{color:var(--gold);margin-left:6px}
+  .stat .label{margin-top:16px;color:var(--bone-dim);font-size:14.5px;max-width:36ch}
+  .stat .meta{position:absolute;top:24px;left:40px}
+  @media (max-width:900px){.stats{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--rule-2);padding:48px 24px}.stat:last-child{border-bottom:0}}
+
+  /* ---------------- AREAS ---------------- */
+  .areas-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:start}
+  @media (max-width:900px){.areas-wrap{grid-template-columns:1fr;gap:40px}}
+  .area-list{border-top:1px solid var(--rule-2)}
+  .area-row{display:grid;grid-template-columns:60px 1fr auto;align-items:center;padding:24px 0;border-bottom:1px solid var(--rule-2);gap:20px}
+  .area-row .idx{font-family:'JetBrains Mono',monospace;color:var(--bone-faint);font-size:12px}
+  .area-row .name{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,3.6vw,44px);letter-spacing:.01em}
+  .area-row .dist{font-family:'JetBrains Mono',monospace;color:var(--bone-dim);font-size:12px}
+  .area-row:hover .name{color:var(--gold)}
+  .area-row{transition:background .2s}
+  .area-row:hover{background:linear-gradient(90deg, rgba(212,160,23,0.05), transparent 60%)}
+
+  .map{position:relative;aspect-ratio:4/5;border:1px solid var(--rule-2);background:
+    linear-gradient(180deg, #0d0d0d, #090909);
+    overflow:hidden}
+  .map-grid{position:absolute;inset:0;background-image:
+    linear-gradient(rgba(242,237,230,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242,237,230,0.05) 1px, transparent 1px);
+    background-size:40px 40px}
+  .map-topo{position:absolute;inset:0;opacity:.5}
+  .map-pin{position:absolute;display:flex;align-items:center;gap:8px;transform:translate(-50%,-50%)}
+  .map-pin .dot{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(212,160,23,0.18), 0 0 14px rgba(212,160,23,0.55)}
+  .map-pin .lbl{font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--bone)}
+  .map-pin.primary .dot{background:var(--gold);box-shadow:0 0 0 6px rgba(212,160,23,0.25), 0 0 22px rgba(212,160,23,0.8);animation:pulse 2.4s infinite ease-out}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(212,160,23,0.55), 0 0 22px rgba(212,160,23,0.8)}100%{box-shadow:0 0 0 22px rgba(212,160,23,0), 0 0 22px rgba(212,160,23,0.8)}}
+  .map-corner{position:absolute;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--bone-faint);padding:14px}
+  .map-corner.tl{top:0;left:0}.map-corner.br{bottom:0;right:0}
+  .map-scale{position:absolute;left:14px;bottom:14px;display:flex;align-items:center;gap:8px;color:var(--bone-faint);font-family:'JetBrains Mono',monospace;font-size:10px}
+  .map-scale .bar{width:60px;height:4px;background:repeating-linear-gradient(90deg, var(--bone-faint) 0 15px, transparent 15px 30px)}
+
+  .str-call{margin-top:28px;padding:24px;border:1px solid var(--gold);background:rgba(212,160,23,0.05);display:flex;gap:18px;align-items:flex-start}
+  .str-call .badge{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;background:var(--gold);color:#151004;padding:4px 8px}
+  .str-call p{color:var(--bone);font-size:14.5px;line-height:1.6;flex:1}
+  .str-call strong{color:var(--gold);font-weight:600}
+
+  /* ---------------- BEFORE / AFTER CAROUSEL ---------------- */
+  .ba-carousel{position:relative}
+  .ba-track{display:flex;overflow:hidden;width:100%}
+  .ba-slide{flex:0 0 100%;min-width:100%;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .ba-pane{position:relative;aspect-ratio:16/9;overflow:hidden;border:1px solid var(--rule-2);background:#000}
+  .ba-pane img{width:100%;height:100%;object-fit:cover;display:block}
+  .ba-pane .tag{position:absolute;top:16px;left:16px;padding:6px 10px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone);background:rgba(8,8,8,.72);backdrop-filter:blur(4px);border:1px solid rgba(242,237,230,.15)}
+  .ba-pane .tag.after{color:#151004;background:var(--gold);border-color:var(--gold)}
+  .ba-meta{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-top:14px;padding:0 2px}
+  .ba-meta .title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.01em}
+  .ba-meta .spec{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--bone-faint);text-transform:uppercase}
+  .ba-controls{display:flex;justify-content:space-between;align-items:center;margin-top:28px;gap:20px}
+  .ba-arrows{display:flex;gap:10px}
+  .ba-arrow{width:52px;height:52px;border:1px solid var(--rule-2);display:flex;align-items:center;justify-content:center;background:transparent;transition:background .2s,border-color .2s}
+  .ba-arrow:hover{background:var(--gold);border-color:var(--gold)}
+  .ba-arrow svg{width:14px;height:14px;stroke:var(--bone);transition:stroke .2s}
+  .ba-arrow:hover svg{stroke:#151004}
+  .ba-dots{display:flex;gap:8px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--bone-faint);text-transform:uppercase}
+  .ba-dots .dotgroup{display:flex;gap:8px;margin:0 14px}
+  .ba-dots .d{width:28px;height:2px;background:var(--rule-2);transition:background .25s}
+  .ba-dots .d.on{background:var(--gold)}
+  @media (max-width:720px){
+    .ba-slide{grid-template-columns:1fr;gap:10px}
+  }
+
+  .gal-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:140px;gap:10px;margin-top:64px}
+  .gal-grid .cell{position:relative;overflow:hidden;border:1px solid var(--rule-2);background:#000}
+  .gal-grid .cell img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease, filter .3s ease;filter:grayscale(.1)}
+  .gal-grid .cell:hover img{transform:scale(1.04);filter:none}
+  .gal-grid .cell .cap{position:absolute;left:12px;bottom:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone);padding:4px 8px;background:rgba(8,8,8,.7);border:1px solid rgba(242,237,230,.12)}
+  .gal-grid .c1{grid-column:span 4;grid-row:span 2}
+  .gal-grid .c2{grid-column:span 2;grid-row:span 2}
+  .gal-grid .c3{grid-column:span 2;grid-row:span 2}
+  .gal-grid .c4{grid-column:span 2;grid-row:span 2}
+  .gal-grid .c5{grid-column:span 2;grid-row:span 2}
+  @media (max-width:900px){
+    .gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+    .gal-grid .c1,.gal-grid .c2,.gal-grid .c3,.gal-grid .c4,.gal-grid .c5{grid-column:span 2;grid-row:span 1}
+  }
+
+  /* ---------------- TESTIMONIALS ---------------- */
+  .t-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:24px}
+  @media (max-width:900px){.t-grid{grid-template-columns:1fr}}
+  .t-card{position:relative;padding:40px 32px 36px;background:var(--ink-2);border:1px solid var(--rule-2);display:flex;flex-direction:column;gap:24px;min-height:340px}
+  .t-card .qmark{font-family:'Bebas Neue',sans-serif;color:var(--gold);font-size:96px;line-height:0.6;height:28px}
+  .t-card .q{font-size:17px;line-height:1.5;color:var(--bone);flex:1}
+  .t-card .who{display:flex;align-items:center;gap:14px;padding-top:24px;border-top:1px solid var(--rule)}
+  .t-card .avatar{width:44px;height:44px;border:1px solid var(--rule-2);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--gold)}
+  .t-card .meta .name{font-weight:600;font-size:14px}
+  .t-card .meta .role{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--bone-faint);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+  .t-card .stars{display:flex;gap:3px;color:var(--gold);font-size:13px;letter-spacing:2px}
+
+  /* ---------------- CTA BLOCK (gold) ---------------- */
+  .cta-gold{background:var(--gold);color:#151004;padding:120px 0;position:relative;overflow:hidden;border-top:0}
+  .cta-gold:before{content:"";position:absolute;inset:0;background-image:
+    linear-gradient(#151004 1px, transparent 1px),
+    linear-gradient(90deg, #151004 1px, transparent 1px);
+    background-size:60px 60px;opacity:.05}
+  .cta-inner{display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:end;position:relative}
+  @media (max-width:900px){.cta-inner{grid-template-columns:1fr;gap:40px;align-items:start}}
+  .cta-head{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px, 10vw, 164px);line-height:.86;letter-spacing:0.005em;color:#151004}
+  .cta-sub{color:#3b2c05;font-size:16px;max-width:50ch;margin-top:18px}
+  .cta-actions{display:flex;flex-direction:column;gap:18px}
+  .btn-dark{display:inline-flex;align-items:center;justify-content:space-between;gap:18px;background:#151004;color:var(--bone);padding:22px 28px;font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;transition:background .2s}
+  .btn-dark:hover{background:#000}
+  .btn-dark .arr{width:18px;height:12px;position:relative}
+  .btn-dark .arr:before{content:"";position:absolute;top:50%;left:0;right:2px;height:1.5px;background:var(--bone);transform:translateY(-50%)}
+  .btn-dark .arr:after{content:"";position:absolute;top:50%;right:0;width:9px;height:9px;border-top:1.5px solid var(--bone);border-right:1.5px solid var(--bone);transform:translateY(-50%) rotate(45deg)}
+  .cta-call{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#3b2c05;display:flex;align-items:center;gap:10px}
+  .cta-call .big{font-family:'Bebas Neue',sans-serif;color:#151004;font-size:28px;letter-spacing:.02em;text-transform:none}
+
+  /* ---------------- CONTACT / QUOTE ---------------- */
+  .quote-wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:80px}
+  @media (max-width:900px){.quote-wrap{grid-template-columns:1fr;gap:40px}}
+  .quote-lead .list{margin-top:32px;display:flex;flex-direction:column;gap:18px}
+  .quote-lead .li{display:flex;gap:16px;align-items:flex-start}
+  .quote-lead .li .k{font-family:'JetBrains Mono',monospace;color:var(--gold);font-size:12px;letter-spacing:.06em;min-width:34px}
+  .quote-lead .li .v{color:var(--bone-dim);font-size:14.5px;line-height:1.55}
+  .quote-lead .li .v b{color:var(--bone);font-weight:600}
+
+  .form{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule-2);background:#0b0b0b}
+  .form .field{padding:22px 24px 20px;border-right:1px solid var(--rule-2);border-bottom:1px solid var(--rule-2);position:relative;transition:background .2s}
+  .form .field:nth-child(even){border-right:0}
+  .form .field.full{grid-column:1 / -1;border-right:0}
+  .form .field:last-child{border-bottom:0}
+  .form .field:focus-within{background:#050505}
+  .form label{display:block;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+  .form input,.form select,.form textarea{width:100%;background:#060606;border:1px solid rgba(242,237,230,0.14);color:var(--bone);font-family:'Inter',sans-serif;font-size:15.5px;outline:none;padding:14px 14px;transition:border-color .2s,background .2s,box-shadow .2s}
+  .form input:hover,.form select:hover,.form textarea:hover{border-color:rgba(242,237,230,0.26)}
+  .form input:focus,.form select:focus,.form textarea:focus{border-color:var(--gold);background:#0a0a0a;box-shadow:0 0 0 3px rgba(212,160,23,.12)}
+  .form input::placeholder,.form textarea::placeholder{color:rgba(242,237,230,0.32)}
+  .form select{appearance:none;-webkit-appearance:none;background-color:#060606;background-image:linear-gradient(45deg, transparent 50%, var(--bone-dim) 50%), linear-gradient(135deg, var(--bone-dim) 50%, transparent 50%);background-position:calc(100% - 18px) 50%, calc(100% - 12px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:36px;cursor:pointer}
+  .form select option{background:#0b0b0b;color:var(--bone)}
+  .form textarea{resize:vertical;min-height:120px;line-height:1.5}
+  .form .submit{grid-column:1 / -1;padding:0;border:0;border-top:1px solid var(--rule-2)}
+  .form .submit button{width:100%;padding:26px;background:var(--gold);color:#151004;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:14px;transition:background .2s}
+  .form .submit button:hover{background:var(--gold-hi)}
+  @media (max-width:560px){.form{grid-template-columns:1fr}.form .field{border-right:0}}
+
+  /* ---------------- FOOTER ---------------- */
+  footer{padding:60px 0 40px;border-top:1px solid var(--rule)}
+  .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;align-items:start}
+  @media (max-width:900px){.foot{grid-template-columns:1fr 1fr;gap:32px}}
+  @media (max-width:560px){.foot{grid-template-columns:1fr}}
+  .foot h4{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-faint);margin-bottom:16px}
+  .foot a,.foot p{color:var(--bone-dim);font-size:14px;display:block;line-height:1.9}
+  .foot a:hover{color:var(--gold)}
+  .foot-bottom{margin-top:60px;padding-top:24px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;color:var(--bone-faint);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;flex-wrap:wrap;gap:12px}
+
+  /* Fade-in on scroll */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.on{opacity:1;transform:none}
+</style>
 </head>
 <body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark"></span>
+      Sevierville<span class="gold">LandClearing</span>
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#areas">Areas</a>
+            <a href="#gallery">Gallery</a>
+      <div class="nav-phone"><span class="dot"></span>(943) 287-8377</div>
+      <a href="#quote" class="btn-gold">Free Quote <span class="arr"></span></a>
+    </div>
+    <button class="nav-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero-scroll" id="hero">
+  <div class="hero-sticky">
+
+    <!-- Forest / dirt stage -->
+    <div class="stage" id="stage">
+      <div class="sky"></div>
+      <!-- Forest layers (SVG data-uri backgrounds) -->
+      <div class="forest-layer">
+        <div class="forest-band forest-far" id="fFar"></div>
+        <div class="forest-band forest-mid" id="fMid"></div>
+        <div class="forest-band forest-near" id="fNear"></div>
+      </div>
+      <div class="ground"></div>
+
+      <!-- Cleared dirt reveal (grows left→right as machine drives) -->
+      <div class="dirt" id="dirt">
+        <div class="dirt-bg"></div>
+        <div class="dirt-noise"></div>
+        <div class="dirt-stumps" id="dStumps"></div>
+        <div class="dirt-ground"></div>
+        <div class="dirt-treads"></div>
+      </div>
+
+      <!-- Dust at the business end of the machine -->
+      <div class="dust" id="dust"></div>
+
+      <!-- Machine -->
+      <div class="machine" id="machine">
+        <div class="bob">
+          <!-- Original stylized tracked forestry mulcher (no branding) -->
+          <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f3c233"/>
+                <stop offset=".55" stop-color="#d49a0e"/>
+                <stop offset="1" stop-color="#7a5505"/>
+              </linearGradient>
+              <linearGradient id="cab" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#1a1a1a"/>
+                <stop offset="1" stop-color="#0a0a0a"/>
+              </linearGradient>
+              <linearGradient id="drum" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#5a5a5a"/>
+                <stop offset="1" stop-color="#1c1c1c"/>
+              </linearGradient>
+              <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#cfe3ff" stop-opacity=".7"/>
+                <stop offset="1" stop-color="#6b7f9b" stop-opacity=".4"/>
+              </linearGradient>
+            </defs>
+
+            <!-- shadow -->
+            <ellipse cx="220" cy="248" rx="180" ry="8" fill="#000" opacity=".55"/>
+
+            <!-- Tracks -->
+            <g id="tracks">
+              <!-- frame -->
+              <rect x="90" y="180" width="240" height="50" rx="6" fill="#111"/>
+              <rect x="90" y="180" width="240" height="50" rx="6" fill="url(#body)" opacity=".15"/>
+              <!-- sprockets -->
+              <circle cx="118" cy="205" r="24" fill="#222" stroke="#000" stroke-width="2"/>
+              <circle cx="118" cy="205" r="10" fill="#0a0a0a"/>
+              <circle cx="302" cy="205" r="24" fill="#222" stroke="#000" stroke-width="2"/>
+              <circle cx="302" cy="205" r="10" fill="#0a0a0a"/>
+              <!-- track belt outline -->
+              <path d="M118 180 L302 180 A24 24 0 0 1 302 230 L118 230 A24 24 0 0 1 118 180 Z" fill="none" stroke="#000" stroke-width="3"/>
+              <!-- cleats -->
+              <g id="cleats" fill="#2a2a2a" stroke="#000" stroke-width="0.5">
+                <rect x="120" y="178" width="6" height="6"/>
+                <rect x="140" y="178" width="6" height="6"/>
+                <rect x="160" y="178" width="6" height="6"/>
+                <rect x="180" y="178" width="6" height="6"/>
+                <rect x="200" y="178" width="6" height="6"/>
+                <rect x="220" y="178" width="6" height="6"/>
+                <rect x="240" y="178" width="6" height="6"/>
+                <rect x="260" y="178" width="6" height="6"/>
+                <rect x="280" y="178" width="6" height="6"/>
+                <rect x="296" y="178" width="6" height="6"/>
+                <rect x="120" y="226" width="6" height="6"/>
+                <rect x="140" y="226" width="6" height="6"/>
+                <rect x="160" y="226" width="6" height="6"/>
+                <rect x="180" y="226" width="6" height="6"/>
+                <rect x="200" y="226" width="6" height="6"/>
+                <rect x="220" y="226" width="6" height="6"/>
+                <rect x="240" y="226" width="6" height="6"/>
+                <rect x="260" y="226" width="6" height="6"/>
+                <rect x="280" y="226" width="6" height="6"/>
+                <rect x="296" y="226" width="6" height="6"/>
+              </g>
+            </g>
+
+            <!-- Body -->
+            <path d="M140 110 L330 110 L340 185 L130 185 Z" fill="url(#body)" stroke="#000" stroke-width="2"/>
+            <!-- rear engine/fender detail -->
+            <rect x="300" y="130" width="40" height="55" fill="#3a2a0a" stroke="#000" stroke-width="1.5"/>
+            <rect x="305" y="136" width="30" height="4" fill="#0a0a0a"/>
+            <rect x="305" y="146" width="30" height="4" fill="#0a0a0a"/>
+            <rect x="305" y="156" width="30" height="4" fill="#0a0a0a"/>
+
+            <!-- Cab / ROPS -->
+            <path d="M170 38 L286 38 L300 110 L152 110 Z" fill="url(#cab)" stroke="#000" stroke-width="2"/>
+            <!-- windshield -->
+            <path d="M180 48 L276 48 L288 104 L164 104 Z" fill="url(#glass)"/>
+            <!-- cage bars -->
+            <line x1="210" y1="44" x2="210" y2="108" stroke="#000" stroke-width="2"/>
+            <line x1="246" y1="44" x2="246" y2="108" stroke="#000" stroke-width="2"/>
+            <!-- top -->
+            <rect x="172" y="34" width="116" height="8" fill="#0a0a0a"/>
+            <!-- beacon -->
+            <circle cx="230" cy="30" r="5" fill="#D4A017"/>
+            <rect x="228" y="26" width="4" height="8" fill="#D4A017" opacity=".6"/>
+
+            <!-- Lift arms -->
+            <path d="M150 120 L80 140 L72 172 L126 165 Z" fill="#9a7408" stroke="#000" stroke-width="2"/>
+            <path d="M150 120 L78 142" stroke="#000" stroke-width="1" opacity=".4"/>
+            <circle cx="150" cy="120" r="5" fill="#0a0a0a"/>
+
+            <!-- Mulcher attachment -->
+            <g id="mulcher">
+              <!-- housing -->
+              <path d="M12 130 L80 130 L88 192 L4 192 Z" fill="#2a2a2a" stroke="#000" stroke-width="2"/>
+              <!-- top hood -->
+              <rect x="10" y="120" width="72" height="14" fill="#d4a017" stroke="#000" stroke-width="2"/>
+              <!-- drum -->
+              <ellipse cx="46" cy="176" rx="44" ry="16" fill="url(#drum)" stroke="#000" stroke-width="2"/>
+              <!-- teeth -->
+              <g fill="#1a1a1a" stroke="#000" stroke-width="0.5">
+                <rect x="10" y="170" width="4" height="10"/>
+                <rect x="22" y="168" width="4" height="12"/>
+                <rect x="34" y="166" width="4" height="14"/>
+                <rect x="46" y="166" width="4" height="14"/>
+                <rect x="58" y="168" width="4" height="12"/>
+                <rect x="70" y="170" width="4" height="10"/>
+              </g>
+              <!-- motion lines -->
+              <g stroke="#fff" stroke-width="1" opacity=".35" id="mSpin">
+                <line x1="20" y1="176" x2="30" y2="176"/>
+                <line x1="58" y1="170" x2="68" y2="170"/>
+                <line x1="40" y1="184" x2="52" y2="184"/>
+              </g>
+            </g>
+
+            <!-- debris / chips -->
+            <g id="chips" fill="#6b4a1a">
+              <rect x="2" y="150" width="4" height="3"/>
+              <rect x="-6" y="140" width="5" height="3"/>
+              <rect x="-14" y="158" width="4" height="4"/>
+              <rect x="-20" y="128" width="5" height="3"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="vignette"></div>
+      <div class="grain"></div>
+    </div>
+
+    <!-- Chrome overlays (all inside sticky, not clipped) -->
+    <div class="hero-chrome">
+      <div class="hero-top">
+        <div class="tag"><span class="bar"></span><span class="mono">Sevierville Land Clearing · Licensed & Insured · East TN</span></div>
+        <div class="coords mono">
+          <div class="v">35.8623° N · 83.5619° W</div>
+          <div>Smoky Mountain Foothills</div>
+        </div>
+      </div>
+
+      <div class="hero-counter">
+        <div class="num"><span id="acres">0</span><span style="color:var(--bone);opacity:.4">/547</span></div>
+        <div class="mono lbl">Acres cleared · 2024–2025</div>
+      </div>
+
+      <div class="hero-headline">
+        <div class="row" data-reveal="WE CLEAR"></div>
+        <div class="row" data-reveal="THE LAND."></div>
+        <div class="row small" data-reveal="YOU BUILD THE DREAM."></div>
+      </div>
+
+      <div class="hero-cta" id="heroCta">
+        <a href="#quote" class="btn-gold" style="padding:18px 30px;font-size:13px">Get your free quote <span class="arr"></span></a>
+      </div>
+
+      <div class="scroll-hint" id="scrollHint">
+        <span>Scroll to clear</span><span class="line"></span>
+      </div>
+    </div>
+
+    <div class="hero-progress"><div class="bar"></div></div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="section" id="services">
   <div class="container">
-    <span class="badge">Launching Soon</span>
-    <h1>Sevierville Land Clearing</h1>
-    <p>Professional land clearing, brush removal, and lot preparation serving Sevierville, Pigeon Forge, Gatlinburg, and the surrounding Smoky Mountain region. Our new site is coming online shortly.</p>
-    <div class="contact">
-      For quotes or inquiries, email <a href="mailto:quotes@seviervillelandclearing.com">quotes@seviervillelandclearing.com</a>.
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dash"></span><span class="mono">§ 01 — Capabilities</span></div>
+      <div>
+        <h2 class="section-title">What we do,<br>and what we don't.</h2>
+        <p class="section-sub">We run tracked mulchers, skid steers with grapples, and dozers. We clear raw timber, undergrowth, brush, and brier — then leave the ground ready for a footer, a driveway, or a mountain view. We don't do landscaping.</p>
+      </div>
+    </div>
+
+    <div class="svc-grid reveal">
+      <div class="svc">
+        <div class="svc-num">01</div>
+        <div class="svc-arrow"><svg viewBox="0 0 12 12"><path d="M1 11 L11 1 M5 1 H11 V7" fill="none" stroke-width="1.5"/></svg></div>
+        <div>
+          <h3 class="svc-title">Land Clearing</h3>
+          <p class="svc-desc">Full-site clearing on acreage up to 40+ acres. Trees, stumps, undergrowth — hauled or ground on-site, your call.</p>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="svc-num">02</div>
+        <div class="svc-arrow"><svg viewBox="0 0 12 12"><path d="M1 11 L11 1 M5 1 H11 V7" fill="none" stroke-width="1.5"/></svg></div>
+        <div>
+          <h3 class="svc-title">Forestry Mulching</h3>
+          <p class="svc-desc">Low-impact, one-pass mulching. No burn piles, no hauling fees. Leaves nutrient-rich mulch for erosion control.</p>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="svc-num">03</div>
+        <div class="svc-arrow"><svg viewBox="0 0 12 12"><path d="M1 11 L11 1 M5 1 H11 V7" fill="none" stroke-width="1.5"/></svg></div>
+        <div>
+          <h3 class="svc-title">Lot Clearing</h3>
+          <p class="svc-desc">Residential and cabin lots in the Smokies. Precise around setbacks, property lines, and protected trees.</p>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="svc-num">04</div>
+        <div class="svc-arrow"><svg viewBox="0 0 12 12"><path d="M1 11 L11 1 M5 1 H11 V7" fill="none" stroke-width="1.5"/></svg></div>
+        <div>
+          <h3 class="svc-title">Bush Hogging</h3>
+          <p class="svc-desc">Pasture reclamation, fence line clearing, right-of-way maintenance. By the hour or by the acre.</p>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="svc-num">05</div>
+        <div class="svc-arrow"><svg viewBox="0 0 12 12"><path d="M1 11 L11 1 M5 1 H11 V7" fill="none" stroke-width="1.5"/></svg></div>
+        <div>
+          <h3 class="svc-title">Site Preparation</h3>
+          <p class="svc-desc">Rough grading, pad prep, access roads, and driveway cuts. We work directly with your builder and surveyor.</p>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="svc-num">06</div>
+        <div class="svc-arrow"><svg viewBox="0 0 12 12"><path d="M1 11 L11 1 M5 1 H11 V7" fill="none" stroke-width="1.5"/></svg></div>
+        <div>
+          <h3 class="svc-title">Free Estimates</h3>
+          <p class="svc-desc">On-site walk, written quote within 48 hours. No pressure, no phantom fees, no bait-and-switch day-of.</p>
+        </div>
+      </div>
     </div>
   </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="section" style="padding-top:40px">
+  <div class="container">
+    <div class="stats reveal">
+      <div class="stat">
+        <div class="meta mono">§ proof — 01</div>
+        <div class="num" data-count="547"><span class="val">0</span><span class="unit">+</span></div>
+        <div class="label">Acres cleared across East Tennessee since 2014. Ridge cuts, valley floors, flood plains.</div>
+      </div>
+      <div class="stat">
+        <div class="meta mono">§ proof — 02</div>
+        <div class="num">Free<span class="unit">.</span></div>
+        <div class="label">Every estimate. On-site walk, line-item quote, 48-hour turnaround. No deposits until you sign.</div>
+      </div>
+      <div class="stat">
+        <div class="meta mono">§ proof — 03</div>
+        <div class="num">East&nbsp;TN<span class="unit">.</span></div>
+        <div class="label">Locals. Based in Sevierville. We know the grades, the granite, and which hollows flood in March.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AREAS ============ -->
+<section class="section" id="areas">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dash"></span><span class="mono">§ 02 — Service Radius</span></div>
+      <div>
+        <h2 class="section-title">From the <span class="gold">foothills</span><br>to the ridgeline.</h2>
+        <p class="section-sub">60-mile radius from downtown Sevierville. We work every county in the shadow of the Smokies, and we specialize in the terrain nobody else wants to touch.</p>
+      </div>
+    </div>
+
+    <div class="areas-wrap reveal">
+      <div>
+        <div class="area-list">
+          <div class="area-row"><span class="idx">SV/01</span><span class="name">Sevierville <span style="color:var(--gold);font-size:.5em;vertical-align:middle;margin-left:10px">HQ</span></span><span class="dist">0 MI · base</span></div>
+          <div class="area-row"><span class="idx">PF/02</span><span class="name">Pigeon Forge</span><span class="dist">6 MI · SE</span></div>
+          <div class="area-row"><span class="idx">GT/03</span><span class="name">Gatlinburg</span><span class="dist">14 MI · SE</span></div>
+          <div class="area-row"><span class="idx">KN/04</span><span class="name">Knoxville</span><span class="dist">28 MI · W</span></div>
+          <div class="area-row"><span class="idx">MV/05</span><span class="name">Maryville</span><span class="dist">34 MI · SW</span></div>
+          <div class="area-row"><span class="idx">OR/06</span><span class="name">Oak Ridge</span><span class="dist">48 MI · NW</span></div>
+        </div>
+
+        <div class="str-call">
+          <span class="badge">STR / CABIN</span>
+          <p><strong>Building short-term rentals in the Smokies?</strong> We've cleared 80+ cabin lots for Airbnb and VRBO developers — including tight mountain parcels with 20%+ grades. We understand Sevier County setback rules, view preservation, and the specific clearing patterns that maximize rental photography appeal.</p>
+        </div>
+      </div>
+
+      <!-- Stylized topo map -->
+      <div class="map" aria-hidden="true">
+        <div class="map-grid"></div>
+        <svg class="map-topo" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#2a2a26" stroke-width="1">
+            <path d="M-20,420 C60,380 120,410 200,370 C280,340 340,380 420,340"/>
+            <path d="M-20,390 C70,350 140,380 220,340 C290,310 350,350 420,310"/>
+            <path d="M-20,350 C80,310 160,350 240,300 C310,270 360,310 420,280"/>
+            <path d="M-20,310 C90,270 180,310 260,260 C330,230 370,260 420,240"/>
+            <path d="M-20,260 C100,220 200,260 280,200 C340,170 380,200 420,190"/>
+            <path d="M-20,210 C110,170 220,200 300,150 C350,120 380,140 420,140"/>
+            <path d="M-20,160 C120,120 240,150 320,100 C360,80 390,100 420,100"/>
+          </g>
+          <g fill="none" stroke="#3a3a32" stroke-width="1" stroke-dasharray="2 4">
+            <path d="M-10,440 L410,440"/>
+            <path d="M-10,330 C80,320 180,340 410,300"/>
+          </g>
+          <!-- Smokies ridgeline suggestion -->
+          <path d="M0,260 C40,200 80,240 120,180 C160,140 200,200 240,160 C280,120 320,180 360,140 C380,120 400,140 420,130 L420,500 L0,500 Z" fill="rgba(212,160,23,0.04)" stroke="rgba(212,160,23,0.25)" stroke-width="1"/>
+          <!-- River -->
+          <path d="M30,500 C80,420 60,380 120,340 C160,310 140,260 200,220 C240,190 260,140 300,100" fill="none" stroke="rgba(100,140,180,0.45)" stroke-width="1.5"/>
+        </svg>
+
+        <!-- pins -->
+        <div class="map-pin primary" style="left:38%;top:54%"><span class="dot"></span><span class="lbl">Sevierville · HQ</span></div>
+        <div class="map-pin" style="left:44%;top:68%"><span class="dot"></span><span class="lbl">Pigeon Forge</span></div>
+        <div class="map-pin" style="left:54%;top:84%"><span class="dot"></span><span class="lbl">Gatlinburg</span></div>
+        <div class="map-pin" style="left:14%;top:46%"><span class="dot"></span><span class="lbl">Knoxville</span></div>
+        <div class="map-pin" style="left:18%;top:66%"><span class="dot"></span><span class="lbl">Maryville</span></div>
+        <div class="map-pin" style="left:8%;top:22%"><span class="dot"></span><span class="lbl">Oak Ridge</span></div>
+
+        <div class="map-corner tl">TN / SEVIER CO.<br>35.8623° N 83.5619° W</div>
+        <div class="map-corner br">GRS80 / NAD83</div>
+        <div class="map-scale"><span class="bar"></span><span>20 MI</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEFORE / AFTER + GALLERY ============ -->
+<section class="section" id="gallery">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dash"></span><span class="mono">§ 03 — Before / After</span></div>
+      <div>
+        <h2 class="section-title">The <span class="gold">transformation</span><br>is the proof.</h2>
+        <p class="section-sub">Same corner, same light — one day apart. Every job leaves a clean mulch mat; no burn piles, no hauled debris. Mature trees stay, the understory goes.</p>
+      </div>
+    </div>
+
+    <div class="ba-carousel reveal" id="baCarousel">
+      <div class="ba-track" id="baTrack">
+        <div class="ba-slide">
+          <div class="ba-pane"><img src="assets/before-1.png" alt="Overgrown corner lot before"><span class="tag">Before</span></div>
+          <div class="ba-pane"><img src="assets/after-1.png" alt="Cleared corner lot after"><span class="tag after">After</span></div>
+        </div>
+        <div class="ba-slide">
+          <div class="ba-pane"><img src="assets/before-2.png" alt="Overgrown utility right-of-way before"><span class="tag">Before</span></div>
+          <div class="ba-pane"><img src="assets/after-2.png" alt="Cleared right-of-way after"><span class="tag after">After</span></div>
+        </div>
+        <div class="ba-slide">
+          <div class="ba-pane"><img src="assets/before-3.png" alt="Overgrown back yard before"><span class="tag">Before</span></div>
+          <div class="ba-pane"><img src="assets/after-3.png" alt="Cleared back yard after"><span class="tag after">After</span></div>
+        </div>
+      </div>
+
+      <div class="ba-meta" id="baMeta">
+        <div class="title" data-meta-title>Commercial Corner Lot · Pigeon Forge</div>
+        <div class="spec" data-meta-spec>± 1.2 ACRES · 1 DAY · FORESTRY MULCHING</div>
+      </div>
+
+      <div class="ba-controls">
+        <div class="ba-dots">
+          <span id="baIdx">01</span>
+          <span class="dotgroup">
+            <span class="d on"></span><span class="d"></span><span class="d"></span>
+          </span>
+          <span>03</span>
+        </div>
+        <div class="ba-arrows">
+          <button class="ba-arrow" id="baPrev" aria-label="Previous"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.5"><path d="M8 1 L3 6 L8 11"/></svg></button>
+          <button class="ba-arrow" id="baNext" aria-label="Next"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.5"><path d="M4 1 L9 6 L4 11"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gal-grid reveal" style="display:none">
+      <div class="cell c1"><img src="assets/after-2.png" alt="Cleared access corridor through forest"><span class="cap">Access Corridor · Sevier Co.</span></div>
+      <div class="cell c2"><img src="assets/after-3.png" alt="Residential yard cleared"><span class="cap">Residential Lot · Gatlinburg</span></div>
+      <div class="cell c3"><img src="assets/after-1.png" alt="Commercial lot cleared"><span class="cap">Commercial Lot · Pigeon Forge</span></div>
+      <div class="cell c4"><img src="assets/before-1.png" alt="Overgrown pines at intersection"><span class="cap">Pre-Clearing Survey</span></div>
+      <div class="cell c5"><img src="assets/before-2.png" alt="Dense overgrowth in right-of-way"><span class="cap">Dense Brush · ROW</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section" id="reviews">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dash"></span><span class="mono">§ 04 — Field Reports</span></div>
+      <div>
+        <h2 class="section-title">Straight from the <span class="gold">landowners.</span></h2>
+      </div>
+    </div>
+
+    <div class="t-grid reveal">
+      <div class="t-card">
+        <div class="qmark">&ldquo;</div>
+        <p class="q">They cleared 8 acres of ridge on my Wears Valley cabin lot in four days. Left the lot ready for footer work and the view corridor dialed exactly how I wanted it. Zero surprises on the invoice.</p>
+        <div class="who">
+          <div class="avatar">JH</div>
+          <div class="meta">
+            <div class="name">Jake Holloway</div>
+            <div class="role">STR Developer · Wears Valley</div>
+          </div>
+        </div>
+        <div class="stars">★ ★ ★ ★ ★</div>
+      </div>
+      <div class="t-card">
+        <div class="qmark">&ldquo;</div>
+        <p class="q">Called three other outfits. Two ghosted, one quoted triple. These guys walked the property in person, gave me a written number in 24 hours, and finished on the day they said. Rare thing.</p>
+        <div class="who">
+          <div class="avatar">MR</div>
+          <div class="meta">
+            <div class="name">Miranda Reese</div>
+            <div class="role">Homeowner · Gatlinburg</div>
+          </div>
+        </div>
+        <div class="stars">★ ★ ★ ★ ★</div>
+      </div>
+      <div class="t-card">
+        <div class="qmark">&ldquo;</div>
+        <p class="q">Forestry mulched 12 acres of overgrown pasture for me outside Maryville. What used to be impassable brier is a clean, usable field now. Professional crew, and they respect the neighbors' fence lines.</p>
+        <div class="who">
+          <div class="avatar">DT</div>
+          <div class="meta">
+            <div class="name">Dale Tipton</div>
+            <div class="role">Cattle Farmer · Blount Co.</div>
+          </div>
+        </div>
+        <div class="stars">★ ★ ★ ★ ★</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GOLD CTA ============ -->
+<section class="cta-gold">
+  <div class="container">
+    <div class="cta-inner">
+      <div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+          <span style="width:32px;height:1px;background:#151004"></span>
+          <span class="mono" style="color:#3b2c05">§ 05 — Next step</span>
+        </div>
+        <h2 class="cta-head">READY TO CLEAR<br>YOUR LAND?</h2>
+        <p class="cta-sub">Free on-site estimates within 48 hours. No deposit required until you sign. Every quote is line-itemed, written, and what you pay on the day we start — the number we gave you when we walked your property.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="#quote" class="btn-dark">Request Free Estimate <span class="arr"></span></a>
+        <div class="cta-call">
+          <span>Or call direct</span>
+          <span class="big">(943) 287-8377</span>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#3b2c05;display:flex;gap:18px;flex-wrap:wrap">
+          <span>↳ Mon–Sat 7AM–7PM</span>
+          <span>↳ Licensed &amp; Insured</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE FORM ============ -->
+<section class="section" id="quote">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dash"></span><span class="mono">§ 06 — Request a Quote</span></div>
+      <div>
+        <h2 class="section-title">Tell us about<br>the <span class="gold">property.</span></h2>
+      </div>
+    </div>
+
+    <div class="quote-wrap">
+      <div class="quote-lead reveal">
+        <p style="font-size:17px;line-height:1.6;color:var(--bone)">Fill this out and we'll reach out within one business day to set up a walk. Photos and a rough property map help speed things up — but they're not required.</p>
+        <div class="list">
+          <div class="li"><span class="k">01.</span><span class="v"><b>Free on-site walk.</b> One of our operators meets you at the property, typically within 5 business days.</span></div>
+          <div class="li"><span class="k">02.</span><span class="v"><b>Written quote in 48 hours.</b> Line-itemed by service, acreage, and hauling. No phantom fees.</span></div>
+          <div class="li"><span class="k">03.</span><span class="v"><b>Scheduled within 2–4 weeks.</b> Faster in winter. We'll give you a firm start date before any deposit.</span></div>
+          <div class="li"><span class="k">04.</span><span class="v"><b>Cleanup included.</b> Mulch spread or hauled, access points graded, neighbor-facing edges swept.</span></div>
+        </div>
+      </div>
+
+      <form class="form reveal" onsubmit="event.preventDefault(); this.querySelector('.submit button').innerText='Request received — we\\'ll be in touch.'">
+        <div class="field">
+          <label for="f-name">01 · Full Name</label>
+          <input id="f-name" type="text" placeholder="Jane Doe" required>
+        </div>
+        <div class="field">
+          <label for="f-phone">02 · Phone</label>
+          <input id="f-phone" type="tel" placeholder="(943) 287-8377" required>
+        </div>
+        <div class="field">
+          <label for="f-email">03 · Email</label>
+          <input id="f-email" type="email" placeholder="you@domain.com" required>
+        </div>
+        <div class="field">
+          <label for="f-size">04 · Property Size</label>
+          <input id="f-size" type="text" placeholder="e.g. 3.2 acres" required>
+        </div>
+        <div class="field full">
+          <label for="f-svc">05 · Service Needed</label>
+          <select id="f-svc" required>
+            <option value="">Select a service —</option>
+            <option>Land Clearing — Full Site</option>
+            <option>Forestry Mulching</option>
+            <option>Lot Clearing — Residential / Cabin</option>
+            <option>Bush Hogging</option>
+            <option>Site Preparation / Grading</option>
+            <option>Something else — explain below</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="f-msg">06 · Tell us about the job</label>
+          <textarea id="f-msg" rows="4" placeholder="Address or nearest cross street, timeline, access notes, anything that'd help us price it accurately."></textarea>
+        </div>
+        <div class="submit"><button type="submit">Request Free Estimate →</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div>
+        <div class="logo" style="margin-bottom:18px">
+          <span class="logo-mark"></span>
+          Sevierville<span class="gold">LandClearing</span>
+        </div>
+        <p style="color:var(--bone-dim);max-width:40ch;font-size:14px;line-height:1.7">
+          Forestry mulching, lot clearing, and site prep across East Tennessee. Family-owned, locally operated, fully insured.
+        </p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="tel:+19432878377">(943) 287-8377</a>
+        <a href="mailto:operations@bushbusters.com">operations@bushbusters.com</a>
+        <p>Mon–Sat · 7AM–7PM</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="#services">Land Clearing</a>
+        <a href="#services">Forestry Mulching</a>
+        <a href="#services">Lot Clearing</a>
+        <a href="#services">Site Preparation</a>
+      </div>
+      <div>
+        <h4>Areas</h4>
+        <a href="#areas">Sevierville</a>
+        <a href="#areas">Pigeon Forge</a>
+        <a href="#areas">Gatlinburg</a>
+        <a href="#areas">Knoxville</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sevierville Land Clearing · East Tennessee</span>
+      <span>Built in East Tennessee</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ FOREST + STUMP SVG BACKGROUNDS (data-uris) ============ */
+(function(){
+  const forestSVG = (h, dark, highlight, density) => {
+    const trees = [];
+    const W = 1600;
+    const step = W / density;
+    for (let i=0; i<density; i++){
+      const x = i * step + (Math.random()*step*0.6 - step*0.3);
+      const tH = h * (0.55 + Math.random()*0.4);
+      const tW = tH * (0.22 + Math.random()*0.12);
+      const y = h - tH;
+      const shade = Math.random() > 0.5 ? dark : highlight;
+      // conifer silhouette
+      trees.push(`<path d="M${x} ${y} L${x-tW/2} ${y+tH*0.35} L${x-tW*0.3} ${y+tH*0.35} L${x-tW*0.6} ${y+tH*0.65} L${x-tW*0.36} ${y+tH*0.65} L${x-tW*0.75} ${y+h-tH*0.02} L${x+tW*0.75} ${y+h-tH*0.02} L${x+tW*0.36} ${y+tH*0.65} L${x+tW*0.6} ${y+tH*0.65} L${x+tW*0.3} ${y+tH*0.35} L${x+tW/2} ${y+tH*0.35} Z" fill="${shade}"/>`);
+    }
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${h}" viewBox="0 0 ${W} ${h}">${trees.join('')}</svg>`;
+    return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+  };
+  document.getElementById('fFar').style.backgroundImage = `url("${forestSVG(280, '#0d1608', '#14200c', 28)}")`;
+  document.getElementById('fMid').style.backgroundImage = `url("${forestSVG(360, '#0a1405', '#142208', 24)}")`;
+  document.getElementById('fNear').style.backgroundImage = `url("${forestSVG(420, '#060c03', '#0e1806', 22)}")`;
+
+  // Stumps (for cleared side)
+  const stumpSVG = (()=> {
+    const W=1600,H=120,items=[];
+    for (let i=0;i<36;i++){
+      const x = Math.random()*W;
+      const w = 8 + Math.random()*16;
+      const y = H - (10 + Math.random()*20);
+      items.push(`<ellipse cx="${x}" cy="${y+w*0.2}" rx="${w}" ry="${w*0.35}" fill="#2a1a0b" stroke="#120a04" stroke-width="1"/>`);
+      items.push(`<ellipse cx="${x}" cy="${y+w*0.1}" rx="${w*0.85}" ry="${w*0.3}" fill="#3d2812"/>`);
+      items.push(`<ellipse cx="${x}" cy="${y+w*0.05}" rx="${w*0.6}" ry="${w*0.22}" fill="#4f3418"/>`);
+    }
+    return "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${items.join('')}</svg>`);
+  })();
+  document.getElementById('dStumps').style.backgroundImage = `url("${stumpSVG}")`;
+})();
+
+/* ============ HERO SCROLL CHOREOGRAPHY ============ */
+(function(){
+  const hero = document.getElementById('hero');
+  const stage = document.getElementById('stage');
+  const machine = document.getElementById('machine');
+  const dirt = document.getElementById('dirt');
+  const dust = document.getElementById('dust');
+  const progress = document.querySelector('.hero-progress .bar');
+  const acres = document.getElementById('acres');
+  const cta = document.getElementById('heroCta');
+  const scrollHint = document.getElementById('scrollHint');
+  const nav = document.getElementById('nav');
+
+  // Prepare letter spans
+  document.querySelectorAll('[data-reveal]').forEach(el => {
+    const text = el.dataset.reveal;
+    el.innerHTML = [...text].map(c => `<span class="letter">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+  });
+  const allLetters = [...document.querySelectorAll('.hero-headline .letter')];
+  const totalLetters = allLetters.length;
+
+  let ticking = false;
+  const onScroll = () => {
+    if (!ticking){
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  };
+  function update(){
+    ticking = false;
+    const rect = hero.getBoundingClientRect();
+    const total = hero.offsetHeight - window.innerHeight;
+    const p = Math.max(0, Math.min(1, -rect.top / total));
+
+    // Nav darken
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+
+    // progress bar
+    progress.parentElement.style.setProperty('--p', p);
+
+    // machine movement — it starts offscreen-left, drives right, exits offscreen-right
+    // we want text reveal to start ~0.1 and finish by ~0.8; cta by 0.92
+    const mx = Math.max(0, Math.min(1, (p - 0.02) / 0.92));
+    stage.style.setProperty('--mx', mx);
+
+    // wipe follows machine, slightly behind its leading edge
+    // machine occupies up to (mx * (viewportW + width) - width) position; we want dirt to extend to machine's back.
+    const wipe = Math.max(0, Math.min(1, (p - 0.04) / 0.9));
+    stage.style.setProperty('--wipe', wipe);
+
+    // dust near machine's front; use the same mx to position
+    if (mx > 0.02 && mx < 0.98){
+      const leftPx = mx * (window.innerWidth + 300) - 300 + 10;
+      dust.style.left = leftPx + 'px';
+      dust.style.opacity = 0.9;
+    } else {
+      dust.style.opacity = 0;
+    }
+
+    // letter reveal across 0.08–0.78 of scroll
+    const revealStart = 0.08, revealEnd = 0.78;
+    const lp = Math.max(0, Math.min(1, (p - revealStart) / (revealEnd - revealStart)));
+    const shown = Math.round(lp * totalLetters);
+    for (let i=0;i<totalLetters;i++){
+      allLetters[i].classList.toggle('on', i < shown);
+    }
+
+    // acres counter (target 547)
+    const target = 547;
+    const ap = Math.max(0, Math.min(1, (p - 0.05) / 0.85));
+    // easeOut for a more satisfying ticker
+    const eased = 1 - Math.pow(1 - ap, 2);
+    acres.textContent = Math.round(eased * target);
+
+    // cta fade in near end
+    cta.classList.toggle('on', p > 0.86);
+
+    // hide scroll hint once we've started
+    scrollHint.style.opacity = p > 0.04 ? 0 : 0.9;
+  }
+  update();
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', update);
+})();
+
+/* ============ SECTION REVEAL ON SCROLL ============ */
+(function(){
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+
+/* ============ BEFORE / AFTER CAROUSEL ============ */
+(function(){
+  const carousel = document.getElementById('baCarousel');
+  const track = document.getElementById('baTrack');
+  if (!track) return;
+  const slides = track.querySelectorAll('.ba-slide');
+  const dots = document.querySelectorAll('#baCarousel .d');
+  const idxEl = document.getElementById('baIdx');
+  const titleEl = document.querySelector('[data-meta-title]');
+  const specEl = document.querySelector('[data-meta-spec]');
+  const meta = [
+    ['Commercial Corner Lot · Pigeon Forge', '± 1.2 ACRES · 1 DAY · FORESTRY MULCHING'],
+    ['Utility Right-of-Way · Sevier County', '± 0.4 MI · 2 DAYS · ACCESS CLEARING'],
+    ['Residential Back Lot · Gatlinburg', '± 0.3 ACRES · 1 DAY · LOT CLEARING']
+  ];
+  let i = 0;
+  track.style.willChange = 'transform';
+  track.style.transition = 'transform .6s cubic-bezier(.2,.7,.2,1)';
+  const pct = 100 / slides.length;
+  track.style.width = (slides.length * 100) + '%';
+  slides.forEach(s => { s.style.flex = '0 0 ' + pct + '%'; s.style.minWidth = pct + '%'; });
+  const go = (n) => {
+    i = (n + slides.length) % slides.length;
+    track.style.transform = 'translateX(' + (-i * pct) + '%)';
+    dots.forEach((d, k) => d.classList.toggle('on', k === i));
+    idxEl.textContent = String(i + 1).padStart(2, '0');
+    titleEl.textContent = meta[i][0];
+    specEl.textContent = meta[i][1];
+  };
+  let timer = setInterval(() => go(i + 1), 3000);
+  const reset = () => { clearInterval(timer); timer = setInterval(() => go(i + 1), 3000); };
+  document.getElementById('baPrev').addEventListener('click', () => { go(i - 1); reset(); });
+  document.getElementById('baNext').addEventListener('click', () => { go(i + 1); reset(); });
+  carousel.addEventListener('mouseenter', () => clearInterval(timer));
+  carousel.addEventListener('mouseleave', reset);
+  go(0);
+})();
+
+/* ============ STAT COUNTER ============ */
+(function(){
+  const els = document.querySelectorAll('[data-count]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting || entry.target.dataset.counted) return;
+      entry.target.dataset.counted = 1;
+      const el = entry.target;
+      const target = +el.dataset.count;
+      const val = el.querySelector('.val');
+      const dur = 1400;
+      const start = performance.now();
+      const tick = (t) => {
+        const p = Math.min(1, (t - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        val.textContent = Math.round(eased * target);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  }, {threshold:0.35});
+  els.forEach(el => io.observe(el));
+})();
+
+/* ============ TWEAKS ============ */
+(function(){
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "heroCtaBottomVh": 5
+  }/*EDITMODE-END*/;
+
+  const state = Object.assign({}, TWEAK_DEFAULTS);
+  const apply = () => {
+    document.documentElement.style.setProperty('--hero-cta-bottom', state.heroCtaBottomVh + 'vh');
+  };
+  apply();
+
+  // Tweaks panel
+  const panel = document.createElement('div');
+  panel.id = 'tweaks-panel';
+  panel.innerHTML = `
+    <style>
+      #tweaks-panel{position:fixed;right:20px;bottom:20px;z-index:10000;width:280px;
+        background:#0d0d0d;border:1px solid rgba(212,160,23,.4);color:#F2EDE6;
+        font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;
+        padding:16px;display:none;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+      #tweaks-panel.on{display:block}
+      #tweaks-panel h4{margin:0 0 14px;font-family:'Bebas Neue',sans-serif;font-size:18px;
+        letter-spacing:.12em;color:#D4A017}
+      #tweaks-panel .row{margin-bottom:14px}
+      #tweaks-panel label{display:flex;justify-content:space-between;margin-bottom:6px;
+        letter-spacing:.1em;text-transform:uppercase;color:#F2EDE6cc}
+      #tweaks-panel .v{color:#D4A017}
+      #tweaks-panel input[type=range]{width:100%;accent-color:#D4A017}
+      #tweaks-panel .hint{color:#F2EDE680;font-size:10px;line-height:1.5;margin-top:10px;
+        padding-top:10px;border-top:1px solid rgba(242,237,230,.08)}
+    </style>
+    <h4>Tweaks</h4>
+    <div class="row">
+      <label>Hero CTA position <span class="v" id="tw-cta-v">${state.heroCtaBottomVh}vh</span></label>
+      <input type="range" id="tw-cta" min="2" max="20" step="1" value="${state.heroCtaBottomVh}">
+    </div>
+    <div class="hint">Distance from bottom of hero. Lower values move the button down.</div>
+  `;
+  document.body.appendChild(panel);
+
+  const ctaSlider = panel.querySelector('#tw-cta');
+  const ctaV = panel.querySelector('#tw-cta-v');
+  ctaSlider.addEventListener('input', () => {
+    state.heroCtaBottomVh = +ctaSlider.value;
+    ctaV.textContent = state.heroCtaBottomVh + 'vh';
+    apply();
+    try { window.parent.postMessage({type:'__edit_mode_set_keys', edits:{heroCtaBottomVh: state.heroCtaBottomVh}}, '*'); } catch(e){}
+  });
+
+  window.addEventListener('message', (e) => {
+    const d = e.data || {};
+    if (d.type === '__activate_edit_mode') panel.classList.add('on');
+    if (d.type === '__deactivate_edit_mode') panel.classList.remove('on');
+  });
+  try { window.parent.postMessage({type:'__edit_mode_available'}, '*'); } catch(e){}
+})();
+</script>
+
 </body>
 </html>
