@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Request Received — Sevierville Land Clearing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{--ink:#080808;--bone:#F2EDE6;--bone-dim:#b8b1a5;--bone-faint:#6a6459;--gold:#D4A017;--gold-hi:#e9b92b;--rule:rgba(242,237,230,0.10)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--ink);color:var(--bone);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+  a{color:inherit;text-decoration:none}
+  .wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center}
+  .logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.08em;margin-bottom:80px;display:flex;align-items:center;gap:10px}
+  .logo-mark{width:20px;height:20px;position:relative;flex:0 0 auto}
+  .logo-mark:before,.logo-mark:after{content:"";position:absolute;inset:0;border:1.5px solid var(--bone)}
+  .logo-mark:after{border-color:var(--gold);transform:translate(3px,3px)}
+  .gold{color:var(--gold)}
+  .check{width:64px;height:64px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 32px}
+  .check svg{width:28px;height:28px;stroke:var(--gold);stroke-width:2;fill:none}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-faint);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:12px}
+  .eyebrow .dash{width:24px;height:1px;background:var(--gold)}
+  h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,120px);line-height:.9;letter-spacing:0.005em;margin-bottom:24px}
+  p{color:var(--bone-dim);font-size:17px;line-height:1.6;max-width:46ch;margin:0 auto 48px}
+  .steps{display:flex;flex-direction:column;gap:0;border:1px solid var(--rule);max-width:420px;margin:0 auto 56px;text-align:left}
+  .step{display:flex;gap:16px;align-items:flex-start;padding:20px 24px;border-bottom:1px solid var(--rule)}
+  .step:last-child{border-bottom:0}
+  .step .k{font-family:'JetBrains Mono',monospace;color:var(--gold);font-size:12px;letter-spacing:.06em;min-width:28px;padding-top:2px}
+  .step .v{color:var(--bone-dim);font-size:14px;line-height:1.55}
+  .step .v b{color:var(--bone);font-weight:600}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#151004;padding:14px 26px;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase}
+  .btn:hover{background:var(--gold-hi)}
+  .foot{margin-top:80px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--bone-faint)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="/" class="logo"><span class="logo-mark"></span>Sevierville<span class="gold">LandClearing</span></a>
+
+  <div class="check">
+    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+
+  <div class="eyebrow"><span class="dash"></span>Request received<span class="dash"></span></div>
+  <h1>WE'LL BE<br>IN TOUCH.</h1>
+  <p>Your quote request came through. We'll reach out within one business day to set up a time to walk the property.</p>
+
+  <div class="steps">
+    <div class="step"><span class="k">01.</span><span class="v"><b>We'll contact you</b> within one business day to confirm details and schedule a site visit.</span></div>
+    <div class="step"><span class="k">02.</span><span class="v"><b>On-site walk</b> typically within 5 business days of your request.</span></div>
+    <div class="step"><span class="k">03.</span><span class="v"><b>Written quote</b> in your hands within 48 hours of the walk. No pressure.</span></div>
+  </div>
+
+  <a href="/" class="btn">Back to home</a>
+
+  <div class="foot">© 2026 Sevierville Land Clearing · East Tennessee</div>
+</div>
+</body>
+</html>
