@@ -891,11 +891,10 @@
         </div>
       </div>
 
-      <form class="form reveal" action="https://formsubmit.co/ben@sevengensystems.com" method="POST">
-        <input type="hidden" name="_cc" value="operations@bushbusters.com">
-        <input type="hidden" name="_subject" value="New Quote Request — Sevierville Land Clearing">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://seviervillelandclearing.com/thankyou.html">
+      <form class="form reveal" id="quoteForm" method="POST" action="/api/quote" novalidate>
+        <!-- honeypot: hidden from real users; bots fill it and get silently dropped -->
+        <input type="text" name="_company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <input type="hidden" name="_elapsed" id="f-elapsed" value="">
         <div class="field">
           <label for="f-name">01 · Full Name</label>
           <input id="f-name" name="name" type="text" placeholder="Jane Doe" required>
@@ -930,6 +929,29 @@
         </div>
         <div class="submit"><button type="submit">Request Free Estimate →</button></div>
       </form>
+      <script>
+      (function(){
+        var f=document.getElementById('quoteForm'); if(!f) return;
+        var loaded=Date.now();
+        var btn=f.querySelector('button[type=submit]');
+        var label=btn?btn.textContent:'';
+        var telEl=document.querySelector('a[href^="tel:"]');
+        var phone=telEl?telEl.textContent.trim():'us';
+        f.addEventListener('submit',function(e){
+          e.preventDefault();
+          var el=document.getElementById('f-elapsed'); if(el) el.value=String(Date.now()-loaded);
+          var data={}; new FormData(f).forEach(function(v,k){data[k]=v;});
+          if(btn){btn.disabled=true;btn.textContent='Sending…';}
+          fetch('/api/quote',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+            .then(function(r){return r.json().catch(function(){return{ok:r.ok};});})
+            .then(function(j){
+              if(j&&j.ok){window.location.href='/thankyou.html';}
+              else{if(btn){btn.disabled=false;btn.textContent=label;}alert((j&&j.error)||('Something went wrong. Please call '+phone+'.'));}
+            })
+            .catch(function(){if(btn){btn.disabled=false;btn.textContent=label;}alert('Network error. Please call '+phone+'.');});
+        });
+      })();
+      </script>
     </div>
   </div>
 </section>
